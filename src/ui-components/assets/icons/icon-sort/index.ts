@@ -1,0 +1,1 @@
+export {default as IconSort} from "./IconSort.vue"

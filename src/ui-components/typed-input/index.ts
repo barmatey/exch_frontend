@@ -1,0 +1,1 @@
+export {default as TypedInput} from "./TypedInput.vue"

@@ -1,0 +1,1 @@
+export {default as CommodityList} from "./CommodityList.vue"

@@ -1,0 +1,57 @@
+:root {
+    --ui-main-color-primary: rgb(42, 50, 69);
+}
+
+:root {
+    --ui-main-color-primary-2: rgb(52, 60, 79)
+}
+
+:root {
+    --ui-main-color-red: rgb(255, 0, 66);
+}
+
+:root {
+    --ui-main-color-red-light: rgb(255, 125, 159)
+}
+
+:root{
+    --ui-main-color-green: rgb(91, 234, 148);
+}
+
+:root {
+    --ui-main-color-scroll-excel: #dadce0;
+}
+
+:root {
+    --ui-main-color-blue-excel: #e6effd;
+}
+
+:root {
+    --ui-main-color-blue-0: rgb(236, 241, 245);
+}
+
+:root {
+    --ui-main-color-blue-1: rgb(245, 248, 252);
+}
+
+:root {
+    --ui-main-color-blue-2: rgb(248, 250, 253);
+}
+
+:root {
+    --ui-main-color-primary-hover: rgb(55, 63, 82);
+}
+
+:root {
+    --ui-main-color-primary-pressed: rgb(30, 32, 34);
+}
+
+:root{
+    --ui-main-color-outline-pressed: rgb(150, 160, 170);
+}
+
+:root {
+    --ui-main-color-white: #ffffff;
+}
+
+
