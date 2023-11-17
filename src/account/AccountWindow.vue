@@ -22,12 +22,13 @@
 import {onMounted, ref, Ref} from "vue";
 import {Account, getBlankAccount} from "./domain";
 import {AccountGateway} from "./gateway";
+import {TEMP_ACC_ID} from "../core";
 
 const account: Ref<Account> = ref(getBlankAccount())
 
 onMounted(async () => {
     const gateway = new AccountGateway()
-    account.value = await gateway.getAccountById("3fa85f64-5717-4562-b3fc-2c963f66afa6")
+    account.value = await gateway.getAccountById(TEMP_ACC_ID)
 })
 </script>
 
@@ -35,7 +36,6 @@ onMounted(async () => {
 .account-window {
     background: var(--ui-main-color-primary);
     width: 300px;
-    height: 400px;
     padding: 6px 12px;
     color: var(--ui-main-color-white);
 }

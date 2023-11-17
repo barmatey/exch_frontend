@@ -1,4 +1,5 @@
 import axios from "axios"
+import {BASE_URL} from "../core";
 
 
 export const axiosWrapper = {
@@ -11,7 +12,6 @@ export const axiosWrapper = {
     delete: axiosDelete,
 }
 
-const BASE_URL = 'http://127.0.0.1:9999'
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL
