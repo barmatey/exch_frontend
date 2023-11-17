@@ -1,33 +1,8 @@
 <template>
     <div class="order-book">
         <div class="order-book-window">
-            <div class="order-book-side" style="border-right: 1px solid var(--ui-main-color-primary-hover)">
-                <div class="side-title">
-                    Buy offers
-                </div>
-                <div class="side-level" v-for="level in orderBook.buyLevel">
-                    <div class="price-part">
-                        {{ level[0] }}
-                    </div>
-                    <div class="quantity-part">
-                        {{ level[1] }}
-                    </div>
-                </div>
-            </div>
-            <div class="order-book-side">
-                <div class="side-title">
-                    Sell offers
-                </div>
-                <div class="side-level" v-for="level in orderBook.sellLevel">
-                    <div class="price-part">
-                        {{ level[0] }}
-                    </div>
-                    <div class="quantity-part">
-                        {{ level[1] }}
-                    </div>
-                </div>
-            </div>
-
+            <book-side :orderBookSide="orderBook.buyLevel" title="Buy offers"/>
+            <book-side :orderBookSide="orderBook.sellLevel" title="Sell offers"/>
         </div>
         <div class="new-order-window">
             <new-order :orderBookGateway="orderBookGateway" side="Buy"/>
@@ -42,6 +17,7 @@ import {ref, Ref} from "vue";
 import {OrderBook} from "./domain";
 import {OrderBookGateway} from "./gateway";
 import NewOrder from "./NewOrder.vue";
+import BookSide from "./BookSide.vue";
 
 const orderBook: Ref<OrderBook> = ref(OrderBook("OIL"))
 
@@ -63,27 +39,6 @@ orderBookGateway.createWebsocket(orderBook)
     border: 1px solid var(--ui-main-color-primary-hover);
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-}
-
-.order-book-side {
-    width: 300px;
-    padding: 6px 12px;
-}
-
-.side-title {
-
-}
-
-.side-level {
-    display: flex;
-}
-
-.price-part {
-    width: 150px;
-}
-
-.quantity-part {
-    width: 150px;
 }
 
 .new-order-window {

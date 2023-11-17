@@ -2,15 +2,15 @@
     <div class="new-order" style="border-right: 1px solid var(--ui-main-color-primary-hover)">
         <div>
             <label class="order-label">Price</label>
-            <input type="number"/>
+            <input type="number" v-model="order.price"/>
         </div>
         <div>
             <label class="order-label">Quantity</label>
-            <input type="number"/>
+            <input type="number" v-model="order.quantity"/>
         </div>
         <div>
             <div class="order-label" style="height: 28px; width: 100%;"></div>
-            <button>{{ side }}</button>
+            <button @click="sendOrder">{{ side }}</button>
         </div>
     </div>
 </template>
@@ -18,13 +18,29 @@
 <script setup lang="ts">
 import {defineProps} from "@vue/runtime-core";
 import {OrderBookGateway} from "./gateway";
+import {Order} from "./domain";
+import {TEMP_ACC_ID} from "../core";
+import {ref, Ref} from "vue";
 
 const p = defineProps<{
     orderBookGateway: OrderBookGateway,
     side: "Buy" | "Sell",
 }>()
 
-const buttonBkg = p.side === "Buy" ?  "var(--ui-main-color-green)" : "var(--ui-main-color-red)"
+const buttonBkg = p.side === "Buy" ? "var(--ui-main-color-green)" : "var(--ui-main-color-red)"
+
+const order: Ref<Order> = ref({
+    account: TEMP_ACC_ID,
+    direction: p.side.toUpperCase(),
+    dtype: "LIMIT",
+    price: 0,
+    quantity: 0,
+    ticker: "OIL",
+})
+
+async function sendOrder() {
+    await p.orderBookGateway.sendOrder(order.value)
+}
 </script>
 
 <style scoped>

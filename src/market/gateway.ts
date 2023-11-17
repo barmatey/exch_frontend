@@ -1,5 +1,5 @@
 import {BASE_HOST, Id, TEMP_ACC_ID, Ticker} from "../core";
-import {OrderBook} from "./domain";
+import {Order, OrderBook} from "./domain";
 import {Ref} from "vue";
 
 interface TransactionSchema {
@@ -13,6 +13,17 @@ interface OrderCreateSchema {
     direction: string,
     price: number,
     quantity: number,
+}
+
+function orderCreateSerializer(order: Order): OrderCreateSchema {
+    return {
+        account: order.account,
+        direction: order.direction,
+        dtype: order.dtype,
+        price: order.price,
+        quantity: order.quantity,
+        ticker: order.ticker,
+    }
 }
 
 interface OrderBookSchema {
@@ -44,26 +55,18 @@ export class OrderBookGateway {
         this.target = target
         const url = `ws://${BASE_HOST}/market/ws/${this.target.value.ticker}`
         this.ws = new WebSocket(url)
-        this.ws.onopen = () => {
-            console.log("WebSocket opened")
-        }
+        this.ws.onopen = () => console.log("WebSocket opened")
         this.ws.onmessage = (event) => {
             const orderBookSchema: OrderBookSchema = JSON.parse(event.data)
             this.target!.value = orderBookDeserializer(orderBookSchema)
         }
+        this.ws.onclose = () => console.log("WebSocket closed")
     }
 
-    async sendOrder() {
+    async sendOrder(order: Order) {
         if (!this.ws || !this.target) throw Error()
 
-        const data: OrderCreateSchema = {
-            account: TEMP_ACC_ID,
-            direction: "BUY",
-            dtype: "LIMIT",
-            price: 1,
-            quantity: 100,
-            ticker: this.target.value.ticker,
-        }
+        const data: OrderCreateSchema = orderCreateSerializer(order)
         this.ws.send(JSON.stringify(data))
         console.log("ssendOrder")
     }
