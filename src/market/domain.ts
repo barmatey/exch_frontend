@@ -14,8 +14,8 @@ export function OrderBook(ticker: string): OrderBook {
     }
 }
 
-type OrderType = "LIMIT" | "MARKET"
-type OrderDirection = "BUY" | "SELL"
+export type OrderType = "LIMIT" | "MARKET"
+export type OrderDirection = "BUY" | "SELL"
 
 export interface Order {
     account: Id,
@@ -24,4 +24,10 @@ export interface Order {
     quantity: number,
     dtype: OrderType,
     direction: OrderDirection,
+}
+
+export interface Transaction {
+    date: Date,
+    price: number,
+    quantity: number,
 }
