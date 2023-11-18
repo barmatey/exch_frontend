@@ -1,9 +1,13 @@
-import {BASE_HOST, Id, TEMP_ACC_ID, Ticker} from "../core";
-import {Order, OrderBook} from "./domain";
+import {BASE_HOST, Id, Ticker} from "../../../core";
+import {Order, OrderBook, Transaction} from "./domain";
 import {Ref} from "vue";
 
 interface TransactionSchema {
-
+    uuid: string,
+    ticker: Ticker,
+    date: string,
+    price: number,
+    quantity: number,
 }
 
 interface OrderCreateSchema {
@@ -13,6 +17,14 @@ interface OrderCreateSchema {
     direction: string,
     price: number,
     quantity: number,
+}
+
+function transactionDeserializer(schema: TransactionSchema): Transaction {
+    return {
+        date: new Date(schema.date),
+        price: schema.price,
+        quantity: schema.quantity,
+    }
 }
 
 function orderCreateSerializer(order: Order): OrderCreateSchema {
@@ -48,23 +60,26 @@ function orderBookDeserializer(data: OrderBookSchema): OrderBook {
 }
 
 export class OrderBookGateway {
-    private target?: Ref<OrderBook>
+    private orderBook?: Ref<OrderBook>
     private ws?: WebSocket
+    private transactions?: Ref<Transaction[]>
 
-    createWebsocket(target: Ref<OrderBook>) {
-        this.target = target
-        const url = `ws://${BASE_HOST}/market/ws/${this.target.value.ticker}`
+    createWebsocket(orderBook: Ref<OrderBook>, transactions: Ref<Transaction[]>) {
+        this.orderBook = orderBook
+        this.transactions = transactions
+        const url = `ws://${BASE_HOST}/market/ws/${this.orderBook.value.ticker}`
         this.ws = new WebSocket(url)
         this.ws.onopen = () => console.log("WebSocket opened")
         this.ws.onmessage = (event) => {
             const orderBookSchema: OrderBookSchema = JSON.parse(event.data)
-            this.target!.value = orderBookDeserializer(orderBookSchema)
+            this.orderBook!.value = orderBookDeserializer(orderBookSchema)
+            this.transactions!.value = orderBookSchema.transactions.map(item => transactionDeserializer(item))
         }
         this.ws.onclose = () => console.log("WebSocket closed")
     }
 
     async sendOrder(order: Order) {
-        if (!this.ws || !this.target) throw Error()
+        if (!this.ws || !this.orderBook) throw Error()
 
         const data: OrderCreateSchema = orderCreateSerializer(order)
         this.ws.send(JSON.stringify(data))

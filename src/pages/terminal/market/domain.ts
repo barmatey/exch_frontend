@@ -1,4 +1,4 @@
-import {Id, Ticker} from "../core";
+import {Id, Ticker} from "../../../core";
 
 export interface OrderBook {
     ticker: Ticker,
@@ -6,7 +6,7 @@ export interface OrderBook {
     sellLevel: Map<number, number>,
 }
 
-export function OrderBook(ticker: string): OrderBook {
+export function createOrderBook(ticker: string): OrderBook {
     return {
         ticker: ticker,
         buyLevel: new Map(),

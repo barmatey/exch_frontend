@@ -1,12 +1,15 @@
 <template>
 <div class="transaction-history">
-
+    <div v-for="trs in transactions">
+        <transaction-row :transaction="trs"/>
+    </div>
 </div>
 </template>
 
 <script setup lang="ts">
 import {defineProps} from "@vue/runtime-core";
-import {Transaction} from "./domain";
+import {Transaction} from "../market/domain";
+import TransactionRow from "./TransactionRow.vue";
 
 const p = defineProps<{
     transactions: Transaction[],
@@ -15,8 +18,6 @@ const p = defineProps<{
 
 <style scoped>
 .transaction-history{
-    width: 100%;
-    height: 100%;
     background: var(--ui-main-color-primary-pressed);
 }
 </style>

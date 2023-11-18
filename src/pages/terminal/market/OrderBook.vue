@@ -14,12 +14,12 @@
 
 <script setup lang="ts">
 import {ref, Ref} from "vue";
-import {OrderBook} from "./domain";
+import {createOrderBook, OrderBook} from "./domain";
 import {OrderBookGateway} from "./gateway";
 import NewOrder from "./NewOrder.vue";
 import BookSide from "./BookSide.vue";
 
-const orderBook: Ref<OrderBook> = ref(OrderBook("OIL"))
+const orderBook: Ref<OrderBook> = ref(createOrderBook("OIL"))
 
 const orderBookGateway = new OrderBookGateway()
 orderBookGateway.createWebsocket(orderBook)
