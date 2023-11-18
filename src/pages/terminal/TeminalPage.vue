@@ -22,7 +22,7 @@ gateway.createWebsocket(orderBook, transactions)
 .terminal-grid-wrapper {
     display: grid;
     grid-template-columns: 1fr 300px;
-    width: 100vh;
+    width: 100vw;
     height: 100vh;
 }
 </style>

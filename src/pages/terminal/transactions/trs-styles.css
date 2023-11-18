@@ -1,0 +1,19 @@
+.transaction-history {
+    background: var(--ui-main-color-primary-pressed);
+    padding: 6px 12px;
+}
+
+.trs-history-title {
+    color: white;
+    font-size: 16px;
+
+}
+
+.trs-grid-wrapper {
+    display: grid;
+    grid-template-columns: 100px 72px 72px;
+}
+
+.trs-item{
+    color: white;
+}
