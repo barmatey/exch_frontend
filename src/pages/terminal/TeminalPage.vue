@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import TransactionHistory from "./transactions/TransactionHistory.vue";
-import {OrderBookGateway} from "./market/gateway";
+import {OrderBookGateway} from "./gateway";
 import {createOrderBook, OrderBook, Transaction} from "./market/domain";
 import {Ref, ref} from "vue";
 

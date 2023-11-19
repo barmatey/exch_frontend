@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import {defineProps} from "@vue/runtime-core";
-import {OrderBookGateway} from "./gateway";
+import {OrderBookGateway} from "../gateway";
 import {Order, OrderDirection} from "./domain";
 import {TEMP_ACC_ID} from "../../../core";
 import {ref, Ref} from "vue";
