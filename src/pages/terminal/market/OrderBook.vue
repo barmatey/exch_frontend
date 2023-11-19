@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import {ref, Ref} from "vue";
-import {createOrderBook, OrderBook} from "./domain";
+import {createOrderBook, OrderBook} from "../domain";
 import {OrderBookGateway} from "../gateway";
 import NewOrder from "./NewOrder.vue";
 import BookSide from "./BookSide.vue";

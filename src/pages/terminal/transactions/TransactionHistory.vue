@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import {defineProps} from "@vue/runtime-core";
-import {Transaction} from "../market/domain";
+import {Transaction} from "../domain";
 
 const p = defineProps<{
     transactions: Transaction[],

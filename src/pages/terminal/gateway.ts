@@ -1,5 +1,5 @@
 import {BASE_HOST, Id, Ticker} from "../../core";
-import {Order, OrderBook, Transaction} from "./market/domain";
+import {Order, OrderBook, Transaction} from "./domain";
 import {Ref} from "vue";
 
 interface TransactionSchema {
