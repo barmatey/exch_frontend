@@ -24,7 +24,7 @@ gateway.createWebsocket(orderBook, transactions)
 <style scoped>
 .terminal-grid-wrapper {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 400px;
     width: 100vw;
     height: 100vh;
 }

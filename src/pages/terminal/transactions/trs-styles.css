@@ -1,12 +1,24 @@
 .transaction-history {
     background: var(--ui-main-color-primary-pressed);
-    padding: 6px 12px;
+    padding: 0 12px 6px;
+    overflow: auto;
+    max-height: 100vh;
+    position: relative;
 }
 
 .trs-history-title {
     color: white;
     font-size: 16px;
+    grid-column-start: 1;
+    grid-column-end: 5;
 
+}
+
+
+.trs-table-header{
+    background: var(--ui-main-color-primary-pressed);
+    position: sticky;
+    top: 0;
 }
 
 .trs-grid-wrapper {

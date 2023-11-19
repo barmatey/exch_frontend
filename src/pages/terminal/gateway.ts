@@ -73,7 +73,9 @@ export class OrderBookGateway {
         this.ws.onmessage = (event) => {
             const orderBookSchema: OrderBookSchema = JSON.parse(event.data)
             this.orderBook!.value = orderBookDeserializer(orderBookSchema)
-            this.transactions!.value = orderBookSchema.transactions.map(item => transactionDeserializer(item))
+            this.transactions!.value = transactions.value.concat(
+                orderBookSchema.transactions.map(item => transactionDeserializer(item))
+            )
         }
         this.ws.onclose = () => console.log("WebSocket closed")
     }

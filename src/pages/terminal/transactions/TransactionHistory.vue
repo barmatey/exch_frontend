@@ -1,11 +1,13 @@
 <template>
     <div class="transaction-history">
-        <div class="trs-history-title">Last trades</div>
-        <div class="trs-grid-wrapper">
+        <div class="trs-grid-wrapper trs-table-header">
+            <div class="trs-history-title">Last trades</div>
             <div class="trs-item">Date</div>
             <div class="trs-item">Time</div>
             <div class="trs-item">Price</div>
             <div class="trs-item">Quantity</div>
+        </div>
+        <div class="trs-grid-wrapper">
             <div
                 v-for="trs in transactions"
                 class="trs-item"
