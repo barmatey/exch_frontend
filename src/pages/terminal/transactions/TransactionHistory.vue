@@ -9,7 +9,7 @@
         </div>
         <div class="trs-grid-wrapper">
             <div
-                v-for="trs in transactions"
+                v-for="trs in transactions.toReversed()"
                 class="trs-item"
                 style="display: contents"
             >
