@@ -1,6 +1,6 @@
-import {Id, Ticker} from "../core";
+import {Id, Ticker} from "../../../core";
 import {Commodity} from "./domain";
-import {axiosWrapper} from "../shared/axios-wrapper";
+import {axiosWrapper} from "../../../shared/axios-wrapper";
 
 interface CommoditySchema {
     uuid: Id,

@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
-import TransactionHistory from "./transactions/TransactionHistory.vue";
-import {OrderBookGateway} from "./gateway";
+import TransactionHistory from "./market/TransactionHistory.vue";
+import {OrderBookGateway} from "./market/gateway";
 import {Ref, ref} from "vue";
-import {createOrderBook, OrderBook, Transaction} from "./domain";
+import {createOrderBook, OrderBook, Transaction} from "./market/domain";
 import OBook from "./market/OBook.vue";
 
 const gateway = new OrderBookGateway()

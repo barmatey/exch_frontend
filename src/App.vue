@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-import {CommodityList} from "./commodity/components";
+import {CommodityList} from "./pages/terminal/commodity/components";
 import {AccountWindow} from "./account";
 import OrderBook from "./pages/terminal/market/OrderBook.vue";
 import {TerminalPage} from "./pages/terminal";

@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import {defineProps} from "@vue/runtime-core";
-import {Transaction} from "../domain";
+import {Transaction} from "./domain";
 
 const p = defineProps<{
     transactions: Transaction[],
@@ -32,7 +32,37 @@ const p = defineProps<{
 </script>
 
 <style scoped>
-@import "./trs-styles.css";
+.transaction-history {
+    background: var(--ui-main-color-primary-pressed);
+    padding: 0 12px 6px;
+    overflow: auto;
+    max-height: 100vh;
+    position: relative;
+}
 
+.trs-history-title {
+    color: white;
+    font-size: 16px;
+    grid-column-start: 1;
+    grid-column-end: 5;
+
+}
+
+
+.trs-table-header{
+    background: var(--ui-main-color-primary-pressed);
+    position: sticky;
+    top: 0;
+}
+
+.trs-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 66px);
+    grid-column-gap: 24px;
+}
+
+.trs-item{
+    color: white;
+}
 
 </style>

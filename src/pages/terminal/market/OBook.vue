@@ -11,7 +11,7 @@ import {defineProps} from "vue";
 import {OrderBook} from "/src/pages/terminal/domain";
 import NewOrder from "./NewOrder.vue";
 import BookSide from "./BookSide.vue";
-import {OrderBookGateway} from "../gateway";
+import {OrderBookGateway} from "./gateway";
 
 const p = defineProps<{
     orderBook: OrderBook,
