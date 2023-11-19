@@ -51,6 +51,7 @@ const p = defineProps<{
 .subtitle-item {
     border-bottom: 1px solid black;
     padding: 3px 6px;
+    font-size: 14px;
 }
 
 .item {
