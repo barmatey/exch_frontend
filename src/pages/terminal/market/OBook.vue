@@ -1,12 +1,9 @@
 <template>
-    <div class="order-book">
-        <div class="order-book-window">
-            <book-side :orderBookSide="orderBook.buyLevel" title="Buy offers"/>
-            <book-side :orderBookSide="orderBook.sellLevel" title="Sell offers"/>
-            <div></div>
-        </div>
+    <div class="order-book-window">
+        <book-side :orderBookSide="orderBook.buyLevel" title="Buy offers"/>
+        <book-side :orderBookSide="orderBook.sellLevel" title="Sell offers"/>
+        <div></div>
     </div>
-
 </template>
 
 <script setup lang="ts">
@@ -25,14 +22,11 @@ const p = defineProps<{
 
 
 <style scoped>
-.order-book {
-}
-
 .order-book-window {
     border: 1px solid black;
-    border-radius: 12px;
     display: grid;
-    grid-template-columns: 300px 300px 150px;
+    grid-template-columns: 300px 300px 300px;
+    height: 400px;
 }
 
 .new-order-window {
