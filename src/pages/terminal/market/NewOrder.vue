@@ -38,7 +38,7 @@ import {TEMP_ACC_ID} from "../../../core";
 import {ref, Ref} from "vue";
 
 const p = defineProps<{
-    orderBookGateway: OrderBookGateway,
+    gateway: OrderBookGateway,
 }>()
 
 
@@ -53,7 +53,7 @@ const order: Ref<Order> = ref({
 
 async function sendOrder(direction: OrderDirection) {
     order.value.direction = direction
-    await p.orderBookGateway.sendOrder(order.value)
+    await p.gateway.sendOrder(order.value)
 }
 </script>
 
