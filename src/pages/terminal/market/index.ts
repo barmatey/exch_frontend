@@ -1,1 +1,1 @@
-export {default as OrderBook} from "./OrderBook.vue"
+export {default as OBook} from "./OBook.vue"

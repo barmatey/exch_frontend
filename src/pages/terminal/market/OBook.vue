@@ -5,24 +5,25 @@
             <book-side :orderBookSide="orderBook.sellLevel" title="Sell offers"/>
         </div>
         <div class="new-order-window">
-            <new-order :orderBookGateway="orderBookGateway" side="Buy"/>
-            <new-order :orderBookGateway="orderBookGateway" side="Sell"/>
+            <new-order :orderBookGateway="gateway" side="Buy"/>
+            <new-order :orderBookGateway="gateway" side="Sell"/>
         </div>
     </div>
 
 </template>
 
 <script setup lang="ts">
-import {ref, Ref} from "vue";
-import {createOrderBook, OrderBook} from "../domain";
-import {OrderBookGateway} from "../gateway";
+import {defineProps} from "vue";
+import {OrderBook} from "/src/pages/terminal/domain";
 import NewOrder from "./NewOrder.vue";
 import BookSide from "./BookSide.vue";
+import {OrderBookGateway} from "../gateway";
 
-const orderBook: Ref<OrderBook> = ref(createOrderBook("OIL"))
+const p = defineProps<{
+    orderBook: OrderBook,
+    gateway: OrderBookGateway,
+}>()
 
-const orderBookGateway = new OrderBookGateway()
-orderBookGateway.createWebsocket(orderBook)
 </script>
 
 

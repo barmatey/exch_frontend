@@ -1,6 +1,8 @@
 <template>
     <div class="terminal-grid-wrapper">
-        <div>content</div>
+        <div class="content">
+            <o-book :orderBook="orderBook" :gateway="gateway"/>
+        </div>
         <transaction-history :transactions="transactions"/>
     </div>
 </template>
@@ -8,8 +10,9 @@
 <script setup lang="ts">
 import TransactionHistory from "./transactions/TransactionHistory.vue";
 import {OrderBookGateway} from "./gateway";
-import {createOrderBook, OrderBook, Transaction} from "./domain";
 import {Ref, ref} from "vue";
+import {createOrderBook, OrderBook, Transaction} from "./domain";
+import OBook from "./market/OBook.vue";
 
 const gateway = new OrderBookGateway()
 const orderBook: Ref<OrderBook> = ref(createOrderBook("OIL"))
@@ -24,5 +27,10 @@ gateway.createWebsocket(orderBook, transactions)
     grid-template-columns: 1fr max-content;
     width: 100vw;
     height: 100vh;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
 }
 </style>
