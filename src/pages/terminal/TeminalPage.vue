@@ -1,6 +1,7 @@
 <template>
     <div class="terminal-grid-wrapper">
         <div class="content">
+            <commodity-map style="margin-bottom: 12px;"/>
             <o-book :orderBook="orderBook" :gateway="gateway"/>
         </div>
         <transaction-history :transactions="transactions"/>
@@ -12,7 +13,8 @@ import TransactionHistory from "./market/TransactionHistory.vue";
 import {OrderBookGateway} from "./market/gateway";
 import {Ref, ref} from "vue";
 import {createOrderBook, OrderBook, Transaction} from "./market/domain";
-import OBook from "./market/OBook.vue";
+import {OBook} from "./market";
+import {CommodityMap} from "./commodity";
 
 const gateway = new OrderBookGateway()
 const orderBook: Ref<OrderBook> = ref(createOrderBook("OIL"))
@@ -29,8 +31,9 @@ gateway.createWebsocket(orderBook, transactions)
     height: 100vh;
 }
 
-.content{
+.content {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 </style>

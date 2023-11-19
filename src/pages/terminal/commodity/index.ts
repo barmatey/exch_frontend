@@ -1,0 +1,1 @@
+export {default as CommodityMap} from "./CommodityMap.vue"
