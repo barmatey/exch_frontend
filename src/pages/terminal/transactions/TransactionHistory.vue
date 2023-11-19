@@ -3,6 +3,7 @@
         <div class="trs-history-title">Last trades</div>
         <div class="trs-grid-wrapper">
             <div class="trs-item">Date</div>
+            <div class="trs-item">Time</div>
             <div class="trs-item">Price</div>
             <div class="trs-item">Quantity</div>
             <div
@@ -11,6 +12,7 @@
                 style="display: contents"
             >
                 <div> {{ trs.date.toLocaleDateString("ru") }}</div>
+                <div>{{ trs.date.toLocaleTimeString("ru") }}</div>
                 <div>{{ trs.price }}</div>
                 <div>{{ trs.quantity }}</div>
             </div>

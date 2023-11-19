@@ -11,7 +11,8 @@
 
 .trs-grid-wrapper {
     display: grid;
-    grid-template-columns: 100px 72px 72px;
+    grid-template-columns: repeat(4, max-content);
+    grid-column-gap: 24px;
 }
 
 .trs-item{
