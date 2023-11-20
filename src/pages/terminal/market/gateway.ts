@@ -79,6 +79,12 @@ export class OrderBookGateway {
         }
         this.ws.onclose = () => console.log("WebSocket closed")
     }
+    destroyWebsocket() {
+        this.orderBook = undefined
+        this.transactions  = undefined
+        this.ws!.close()
+        this.ws = undefined
+    }
 
     async sendOrder(order: Order) {
         if (!this.ws || !this.orderBook) throw Error()

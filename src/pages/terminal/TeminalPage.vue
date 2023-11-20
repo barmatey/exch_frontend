@@ -27,6 +27,7 @@ gateway.createWebsocket(orderBook, transactions)
 const store = useTerminalStore()
 const target = computed(() => store.selectedCommodity)
 watch(target, () => {
+    gateway.destroyWebsocket()
     orderBook = ref(createOrderBook(target.value.ticker))
     transactions = ref([])
     gateway.createWebsocket(orderBook, transactions)
