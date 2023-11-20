@@ -5,7 +5,7 @@
         <div class="content">
             <o-book :orderBook="orderBook" :gateway="gateway"/>
             <!--            <transaction-history :transactions="transactions"/>-->
-
+        {{store.selectedCommodity}}
         </div>
     </div>
 </template>
@@ -17,11 +17,14 @@ import {Ref, ref} from "vue";
 import {createOrderBook, OrderBook, Transaction} from "./market/domain";
 import {OBook} from "./market";
 import {CommodityMap} from "./commodity";
+import {useTerminalStore} from "./store";
 
 const gateway = new OrderBookGateway()
 const orderBook: Ref<OrderBook> = ref(createOrderBook("OIL"))
 const transactions: Ref<Transaction[]> = ref([])
 gateway.createWebsocket(orderBook, transactions)
+
+const store = useTerminalStore()
 
 </script>
 

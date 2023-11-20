@@ -3,7 +3,13 @@
         <div class="commodity-header">
             Commodities
         </div>
-        <div class="commodity-item" v-for="x in commodities"> {{ x.description }}</div>
+        <div
+            class="commodity-item"
+            v-for="x in commodities"
+            @click="store.setCommodity(x)"
+        >
+            {{ x.description }}
+        </div>
     </div>
 </template>
 
@@ -11,12 +17,16 @@
 import {CommodityGateway} from "./gateway";
 import {onMounted, Ref, ref} from "vue";
 import {Commodity} from "./domain";
+import {useTerminalStore} from "../store";
 
 const gateway = new CommodityGateway()
+const store = useTerminalStore()
 const commodities: Ref<Commodity[]> = ref([])
 
 onMounted(async () => {
     commodities.value = await gateway.getMany()
+    if (commodities.value.at(0))
+        store.setCommodity(commodities.value[0])
 })
 </script>
 

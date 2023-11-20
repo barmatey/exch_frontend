@@ -3,5 +3,8 @@ import App from './App.vue'
 
 import "./ui-components/css/main/ui-main-colors.css"
 import "./ui-components/css/main/ui-main-fonts.css"
+import {createPinia} from "pinia";
 
-createApp(App).mount('#app')
+
+const pinia = createPinia()
+createApp(App).use(pinia).mount('#app')
