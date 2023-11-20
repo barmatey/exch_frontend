@@ -1,12 +1,11 @@
 <template>
     <div class="terminal-grid-wrapper terminal-page">
         <commodity-map/>
-
         <div class="content">
             <o-book :orderBook="orderBook" :gateway="gateway"/>
-            <!--            <transaction-history :transactions="transactions"/>-->
-            {{ store.selectedCommodity }}
+            {{store.selectedCommodity}}
         </div>
+        <transaction-history :transactions="transactions"/>
     </div>
 </template>
 
@@ -42,7 +41,7 @@ watch(target, () => {
 
 .terminal-grid-wrapper {
     display: grid;
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 240px 1fr 400px;
 }
 
 .content {
