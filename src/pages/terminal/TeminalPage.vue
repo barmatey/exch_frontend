@@ -3,7 +3,6 @@
         <commodity-map/>
         <div class="content">
             <o-book :orderBook="orderBook" :gateway="gateway"/>
-            {{store.selectedCommodity}}
         </div>
         <transaction-history :transactions="transactions"/>
     </div>
@@ -18,17 +17,17 @@ import {OBook} from "./market";
 import {CommodityMap} from "./commodity";
 import {useTerminalStore} from "./store";
 
-let gateway = new OrderBookGateway()
-let orderBook: Ref<OrderBook> = ref(createOrderBook("OIL"))
-let transactions: Ref<Transaction[]> = ref([])
+const gateway = new OrderBookGateway()
+const orderBook: Ref<OrderBook> = ref(createOrderBook("OIL"))
+const transactions: Ref<Transaction[]> = ref([])
 gateway.createWebsocket(orderBook, transactions)
 
 const store = useTerminalStore()
 const target = computed(() => store.selectedCommodity)
 watch(target, () => {
     gateway.destroyWebsocket()
-    orderBook = ref(createOrderBook(target.value.ticker))
-    transactions = ref([])
+    orderBook.value = createOrderBook(target.value.ticker)
+    transactions.value = []
     gateway.createWebsocket(orderBook, transactions)
 })
 
@@ -48,5 +47,6 @@ watch(target, () => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 24px;
 }
 </style>
