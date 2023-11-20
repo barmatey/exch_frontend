@@ -2,6 +2,11 @@
     <div class="terminal-grid-wrapper terminal-page">
         <commodity-map/>
         <div class="content">
+            <commodity-info
+                :commodity="store.selectedCommodity"
+                :lastPrice="transactions.at(-1)?.price"
+                style="margin-bottom: 6px"
+            />
             <o-book :orderBook="orderBook" :gateway="gateway"/>
         </div>
         <transaction-history :transactions="transactions"/>
@@ -9,11 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import TransactionHistory from "./market/TransactionHistory.vue";
 import {OrderBookGateway} from "./market/gateway";
 import {computed, Ref, ref, watch} from "vue";
 import {createOrderBook, OrderBook, Transaction} from "./market/domain";
-import {OBook} from "./market";
+import {OBook, TransactionHistory, CommodityInfo} from "./market";
 import {CommodityMap} from "./commodity";
 import {useTerminalStore} from "./store";
 

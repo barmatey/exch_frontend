@@ -39,7 +39,7 @@ const p = defineProps<{
 }
 
 .book-side-header {
-    padding: 3px 6px;
+    padding: 3px 12px;
     font-size: 18px;
 }
 
@@ -50,11 +50,11 @@ const p = defineProps<{
 
 .subtitle-item {
     border-bottom: 1px solid black;
-    padding: 3px 6px;
+    padding: 3px 12px;
     font-size: 14px;
 }
 
 .item {
-    padding: 0 6px;
+    padding: 0 12px;
 }
 </style>
