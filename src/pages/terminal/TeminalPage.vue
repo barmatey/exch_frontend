@@ -1,7 +1,8 @@
 <template>
     <div class="terminal-grid-wrapper">
         <div class="content">
-            <commodity-map style="margin-bottom: 12px;"/>
+            <commodity-map style="margin-bottom: 24px;"/>
+
             <o-book :orderBook="orderBook" :gateway="gateway"/>
         </div>
         <transaction-history :transactions="transactions"/>
