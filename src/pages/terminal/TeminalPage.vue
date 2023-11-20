@@ -1,11 +1,12 @@
 <template>
-    <div class="terminal-grid-wrapper">
-        <div class="content">
-            <commodity-map style="margin-bottom: 24px;"/>
+    <div class="terminal-grid-wrapper terminal-page">
+        <commodity-map/>
 
+        <div class="content">
             <o-book :orderBook="orderBook" :gateway="gateway"/>
+            <!--            <transaction-history :transactions="transactions"/>-->
+
         </div>
-        <transaction-history :transactions="transactions"/>
     </div>
 </template>
 
@@ -25,11 +26,13 @@ gateway.createWebsocket(orderBook, transactions)
 </script>
 
 <style scoped>
+.terminal-page {
+    height: calc(100vh - 48px);
+}
+
 .terminal-grid-wrapper {
     display: grid;
-    grid-template-columns: 1fr 400px;
-    width: 100vw;
-    height: 100vh;
+    grid-template-columns: 240px 1fr;
 }
 
 .content {

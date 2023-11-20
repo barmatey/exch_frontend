@@ -1,12 +1,11 @@
 <template>
-   <terminal-page/>
-
+    <div style="background: var(--ui-main-color-blue-2);">
+        <div style="height: 48px; width: 100vw; background: var(--ui-main-color-primary);"></div>
+        <terminal-page/>
+    </div>
 </template>
 
 <script setup lang="ts">
-import {CommodityList} from "./pages/terminal/commodity/components";
-import {AccountWindow} from "./account";
-import OrderBook from "./pages/terminal/market/OrderBook.vue";
 import {TerminalPage} from "./pages/terminal";
 </script>
 

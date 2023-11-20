@@ -3,22 +3,7 @@
         <div class="commodity-header">
             Commodities
         </div>
-        <div class="commodity-grid">
-            <div class="commodity-grid-item">Ticker</div>
-            <div class="commodity-grid-item">Description</div>
-            <div class="commodity-grid-item">Contracts</div>
-            <div class="commodity-grid-item">Documents</div>
-        </div>
-
-        <div class="commodity-grid">
-            <div v-for="x in commodities" style="display: contents;">
-                <div class="commodity-grid-item"> {{ x.ticker }}</div>
-                <div class="commodity-grid-item"> {{ x.description }}</div>
-                <div class="commodity-grid-item"> data</div>
-                <div class="commodity-grid-item"> data</div>
-            </div>
-        </div>
-
+        <div class="commodity-item" v-for="x in commodities"> {{ x.description }}</div>
     </div>
 </template>
 
@@ -37,34 +22,31 @@ onMounted(async () => {
 
 <style scoped>
 .commodity {
-    height: 300px;
-    width: 800px;
-    border: 1px solid var(--ui-main-color-primary);
-}
-
-.commodity-grid {
-    display: grid;
-    grid-template-columns: 80px 240px 360px 120px;
-}
-
-.commodity-grid-item {
-    /*border-right: 1px solid black;*/
-    border-bottom: 1px solid black;
-    padding: 3px 12px;
+    height: 100%;
+    background: var(--ui-main-color-primary-2);
 }
 
 .commodity-header {
-    padding: 6px 12px;
+    padding: 12px 12px;
     font-size: 24px;
-}
-
-.commodity-line {
-    display: flex;
+    font-weight: bold;
+    background: inherit;
+    color: white;
 }
 
 .commodity-item {
-    width: 120px;
+    background: inherit;
+    color: white;
     height: 36px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
 }
+
+.commodity-item:hover {
+    background: var(--ui-main-color-primary-hover);
+    cursor: pointer;
+}
+
 
 </style>
