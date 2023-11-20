@@ -35,12 +35,14 @@ import {defineProps} from "@vue/runtime-core";
 import {OrderBookGateway} from "./gateway";
 import {Order, OrderDirection} from "./domain";
 import {TEMP_ACC_ID} from "../../../core";
-import {ref, Ref} from "vue";
+import {computed, ref, Ref} from "vue";
+import {useTerminalStore} from "../store";
 
 const p = defineProps<{
     gateway: OrderBookGateway,
 }>()
 
+const store = useTerminalStore()
 
 const order: Ref<Order> = ref({
     account: TEMP_ACC_ID,
@@ -48,11 +50,13 @@ const order: Ref<Order> = ref({
     dtype: "LIMIT",
     price: 4,
     quantity: 1,
-    ticker: "OIL",
+    ticker: "",
 })
 
 async function sendOrder(direction: OrderDirection) {
     order.value.direction = direction
+    order.value.ticker = store.selectedCommodity.ticker
+    if (order.value.ticker == "") throw Error()
     await p.gateway.sendOrder(order.value)
 }
 </script>

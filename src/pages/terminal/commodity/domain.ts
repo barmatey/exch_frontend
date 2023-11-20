@@ -5,3 +5,11 @@ export interface Commodity {
     ticker: Ticker,
     description: string,
 }
+
+export function createCommodity(): Commodity {
+    return {
+        id: Id(null),
+        ticker: "",
+        description: "",
+    }
+}

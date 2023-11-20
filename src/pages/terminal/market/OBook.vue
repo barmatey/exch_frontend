@@ -8,10 +8,10 @@
 
 <script setup lang="ts">
 import {defineProps} from "vue";
-import {OrderBook} from "/src/pages/terminal/domain";
 import NewOrder from "./NewOrder.vue";
 import BookSide from "./BookSide.vue";
 import {OrderBookGateway} from "./gateway";
+import {OrderBook} from "./domain";
 
 const p = defineProps<{
     orderBook: OrderBook,
@@ -27,6 +27,7 @@ const p = defineProps<{
     display: grid;
     grid-template-columns: 300px 300px 200px;
     height: 400px;
+    background: white;
 }
 
 .new-order-window {
