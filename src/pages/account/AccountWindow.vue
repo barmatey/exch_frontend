@@ -22,7 +22,7 @@
 import {onMounted, ref, Ref} from "vue";
 import {Account, getBlankAccount} from "./domain";
 import {AccountGateway} from "./gateway";
-import {TEMP_ACC_ID} from "../core";
+import {TEMP_ACC_ID} from "../../core";
 
 const account: Ref<Account> = ref(getBlankAccount())
 

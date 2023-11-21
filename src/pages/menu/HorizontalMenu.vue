@@ -7,7 +7,7 @@
                 <div class="text-center" style="margin-right: 12px;">Cash:</div>
                 <div class="text-center">$122 500</div>
             </div>
-            <div class="account text-center">Account</div>
+            <div class="account text-center" @click="$router.push({name: 'AccountPage'})">Account</div>
             <div class="logout text-center">Log out</div>
         </div>
     </div>

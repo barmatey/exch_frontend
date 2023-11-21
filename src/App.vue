@@ -7,7 +7,6 @@
 
 <script setup lang="ts">
 import {HorizontalMenu} from "./pages/menu";
-import {TerminalPage} from "./pages/terminal";
 </script>
 
 <style>

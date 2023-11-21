@@ -1,5 +1,5 @@
-import {Id} from "../core";
-import {axiosWrapper} from "../shared/axios-wrapper";
+import {Id} from "../../core";
+import {axiosWrapper} from "../../shared/axios-wrapper";
 import {Account} from "./domain";
 
 interface AccountSchema {
