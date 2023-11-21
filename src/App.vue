@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import {HorizontalMenu} from "./pages/menu";
+import {HorizontalMenu} from "./elements/menu";
 </script>
 
 <style>

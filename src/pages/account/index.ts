@@ -1,1 +1,1 @@
-export {default as AccountPage} from "./AccountWindow.vue"
+export {default as AccountPage} from "./AccountPage.vue"

@@ -1,21 +1,24 @@
 <template>
-    <div class="account-window">
-        <div class="account-title">
-            Account
-        </div>
-        <div class="account-info">
-            <div class="account-info-left"> Cash:</div>
-            <div class="account-info-right"> {{ Number(account.cash).toLocaleString("ru") }}</div>
-        </div>
-        <div class="account-info">
-            <div class="account-info-left"> Buy orders:</div>
-            <div class="account-info-right"> {{ Number(account.buyOrdersAmount).toLocaleString("ru") }}</div>
-        </div>
-        <div class="account-info">
-            <div class="account-info-left"> Sell orders:</div>
-            <div class="account-info-right"> {{ Number(account.sellOrdersAmount).toLocaleString("ru") }}</div>
+    <div>
+        <div class="account-window">
+            <div class="account-title">
+                Account
+            </div>
+            <div class="account-info">
+                <div class="account-info-left"> Cash:</div>
+                <div class="account-info-right"> {{ Number(account.cash).toLocaleString("ru") }}</div>
+            </div>
+            <div class="account-info">
+                <div class="account-info-left"> Buy orders:</div>
+                <div class="account-info-right"> {{ Number(account.buyOrdersAmount).toLocaleString("ru") }}</div>
+            </div>
+            <div class="account-info">
+                <div class="account-info-left"> Sell orders:</div>
+                <div class="account-info-right"> {{ Number(account.sellOrdersAmount).toLocaleString("ru") }}</div>
+            </div>
         </div>
     </div>
+
 </template>
 
 <script setup lang="ts">
@@ -33,22 +36,23 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+
 .account-window {
-    background: var(--ui-main-color-primary);
-    width: 300px;
-    padding: 6px 12px;
-    color: var(--ui-main-color-white);
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 12px;
+    border: 1px solid black;
 }
 
 .account-title {
-    font-size: 18px;
-    padding: 12px 0;
+    font-size: 36px;
 }
 
 .account-info {
     display: flex;
     flex-wrap: wrap;
     margin-top: 3px;
+    width: 100%;
 }
 
 .account-info-left {

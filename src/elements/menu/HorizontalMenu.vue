@@ -1,6 +1,6 @@
 <template>
     <div class="main-menu">
-        <div class="logo">Alliance</div>
+        <div class="logo" @click="$router.push({name: 'TerminalPage'})">Alliance</div>
         <div></div>
         <div class="acc-info">
             <div class="cash-info">
