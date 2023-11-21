@@ -31,7 +31,7 @@ import {useRouter} from "vue-router"
 import {MenuItem, SubmenuItem} from "../menu-items/types";
 import CSubmenuItem from "../menu-items/CSubmenuItem.vue"
 
-const router = useRouter()
+const index = useRouter()
 
 const p = defineProps<{
     menuItems: MenuItem[]

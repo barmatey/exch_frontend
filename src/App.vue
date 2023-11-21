@@ -1,7 +1,7 @@
 <template>
     <div>
         <horizontal-menu/>
-        <terminal-page/>
+        <router-view/>
     </div>
 </template>
 

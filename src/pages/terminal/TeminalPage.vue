@@ -4,7 +4,7 @@
         <div class="content">
             <commodity-info
                 :commodity="store.selectedCommodity"
-                :lastPrice="transactions.at(-1)?.price"
+                :lastPrice="Number(transactions.at(-1)?.price)"
                 style="margin-bottom: 6px"
             />
             <o-book :orderBook="orderBook" :gateway="gateway"/>
