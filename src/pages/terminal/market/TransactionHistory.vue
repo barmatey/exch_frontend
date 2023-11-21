@@ -1,7 +1,6 @@
 <template>
     <div class="transaction-history">
         <div class="trs-grid-wrapper trs-table-header">
-            <div class="trs-history-title">Last trades</div>
             <div class="trs-item">Date</div>
             <div class="trs-item">Time</div>
             <div class="trs-item">Price</div>
@@ -33,7 +32,7 @@ const p = defineProps<{
 
 <style scoped>
 .transaction-history {
-    background: var(--ui-main-color-primary-pressed);
+    background: var(--ui-main-color-primary-2);
     padding: 0 12px 6px;
     overflow: auto;
     max-height: 100vh;
@@ -50,7 +49,7 @@ const p = defineProps<{
 
 
 .trs-table-header{
-    background: var(--ui-main-color-primary-pressed);
+    background: var(--ui-main-color-primary-2);
     position: sticky;
     top: 0;
 }
