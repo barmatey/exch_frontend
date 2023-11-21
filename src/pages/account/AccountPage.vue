@@ -2,14 +2,17 @@
     <div class="account-page-wrapper">
         <div class="content">
             <div class="account-area">
-                  <account-window/>
+                <account-window/>
             </div>
             <div class="sidebar-area">
-                sidebar
+                <side-menu
+                    :items="sideItems"
+                    @onSelect="(item) => handleSelectingSideMenuItem(item)"/>
             </div>
-           <div class="table-area">
-               <order-list :orders="orders"/>
-           </div>
+
+            <div class="table-area">
+                <order-list :orders="orders"/>
+            </div>
         </div>
     </div>
 
@@ -20,6 +23,9 @@ import AccountWindow from "./AccountWindow.vue";
 import {OrderList} from "../../elements/order-list";
 import {Order, OrderDirection, OrderType} from "../../elements/order-list/domain";
 import {Id, TEMP_ACC_ID, Ticker} from "../../core";
+import SideMenu from "../../elements/side-menu/SideMenu.vue";
+import {SideMenuItem} from "../../elements/side-menu/domain";
+import {ref, Ref} from "vue";
 
 const order = (): Order => ({
     account: TEMP_ACC_ID,
@@ -30,6 +36,19 @@ const order = (): Order => ({
     direction: 'BUY',
 })
 const orders: Order[] = [order(), order(), order(), order(), order()]
+const sideItems: Ref<SideMenuItem[]> = ref([
+    {title: "Orders", isSelected: true},
+    {title: "Transactions", isSelected: false},
+    {title: "Deals", isSelected: false},
+])
+
+function handleSelectingSideMenuItem(item: SideMenuItem) {
+    sideItems.value.forEach(x => {
+        x.title === item.title
+            ? x.isSelected = true
+            : x.isSelected = false
+    })
+}
 </script>
 
 <style scoped>
@@ -46,21 +65,23 @@ const orders: Order[] = [order(), order(), order(), order(), order()]
     grid-template-areas:
         'corner account'
         'sidebar table';
-    grid-template-columns: 200px 800px 200px;
+    grid-template-columns: 120px 800px 120px;
+    grid-gap: 48px;
 }
 
-.account-area{
+.account-area {
     grid-area: account;
 }
 
-.sidebar-area{
+.sidebar-area {
     grid-area: sidebar;
-    margin-top: 24px;
+    margin-top: 60px;
 }
 
-.table-area{
+
+.table-area {
     grid-area: table;
-    margin-top: 24px;
+    margin-top: 12px;
 
 }
 </style>
