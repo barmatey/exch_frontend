@@ -38,9 +38,7 @@ onMounted(async () => {
 <style scoped>
 
 .account-window {
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-bottom: 12px;
+
 }
 
 .account-title {

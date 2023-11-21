@@ -1,8 +1,15 @@
 <template>
     <div class="account-page-wrapper">
         <div class="content">
-            <account-window/>
-            <order-list :orders="orders" style="margin-top: 24px;"/>
+            <div class="account-area">
+                  <account-window/>
+            </div>
+            <div class="sidebar-area">
+                sidebar
+            </div>
+           <div class="table-area">
+               <order-list :orders="orders"/>
+           </div>
         </div>
     </div>
 
@@ -35,7 +42,25 @@ const orders: Order[] = [order(), order(), order(), order(), order()]
 }
 
 .content {
-    width: 800px;
+    display: grid;
+    grid-template-areas:
+        'corner account'
+        'sidebar table';
+    grid-template-columns: 200px 800px 200px;
 }
 
+.account-area{
+    grid-area: account;
+}
+
+.sidebar-area{
+    grid-area: sidebar;
+    margin-top: 24px;
+}
+
+.table-area{
+    grid-area: table;
+    margin-top: 24px;
+
+}
 </style>

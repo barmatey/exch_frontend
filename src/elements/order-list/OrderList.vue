@@ -45,7 +45,7 @@ const p = defineProps<{
 }
 
 .order-table-title {
-    padding: 0 6px;
+    padding: 6px;
     font-size: 18px;
     background: var(--ui-main-color-primary);
     color: white;
