@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import {defineProps} from "vue";
-import {Order} from "../../pages/terminal/market/domain";
+import {Order} from "./domain";
 
 const p = defineProps<{
     orders: Order[]

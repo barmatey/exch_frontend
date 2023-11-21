@@ -1,4 +1,4 @@
-import {Id, Ticker} from "../../../core";
+import {Id, Ticker} from "../../core";
 
 export interface OrderBook {
     ticker: Ticker,

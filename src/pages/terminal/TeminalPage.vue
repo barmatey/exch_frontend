@@ -14,9 +14,9 @@
 </template>
 
 <script setup lang="ts">
-import {OrderBookGateway} from "./market/gateway";
+import {OrderBookGateway} from "../../elements/order-list/gateway";
 import {computed, Ref, ref, watch} from "vue";
-import {createOrderBook, OrderBook, Transaction} from "./market/domain";
+import {createOrderBook, OrderBook, Transaction} from "../../elements/order-list/domain";
 import {OBook, TransactionHistory, CommodityInfo} from "./market";
 import {CommodityMap} from "./commodity";
 import {useTerminalStore} from "./store";

@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import AccountWindow from "./AccountWindow.vue";
 import {OrderList} from "../../elements/order-list";
-import {Order, OrderDirection, OrderType} from "../terminal/market/domain";
+import {Order, OrderDirection, OrderType} from "../../elements/order-list/domain";
 import {Id, TEMP_ACC_ID, Ticker} from "../../core";
 
 const order = (): Order => ({

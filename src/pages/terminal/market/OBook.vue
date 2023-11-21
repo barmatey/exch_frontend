@@ -10,8 +10,8 @@
 import {defineProps} from "vue";
 import NewOrder from "./NewOrder.vue";
 import BookSide from "./BookSide.vue";
-import {OrderBookGateway} from "./gateway";
-import {OrderBook} from "./domain";
+import {OrderBookGateway} from "../../../elements/order-list/gateway";
+import {OrderBook} from "../../../elements/order-list/domain";
 
 const p = defineProps<{
     orderBook: OrderBook,
