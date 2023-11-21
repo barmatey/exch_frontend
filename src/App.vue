@@ -1,11 +1,12 @@
 <template>
-    <div style="background: var(--ui-main-color-blue-0);">
-        <div style="height: 48px; width: 100vw; background: var(--ui-main-color-primary);"></div>
+    <div>
+        <horizontal-menu/>
         <terminal-page/>
     </div>
 </template>
 
 <script setup lang="ts">
+import {HorizontalMenu} from "./pages/menu";
 import {TerminalPage} from "./pages/terminal";
 </script>
 

@@ -1,8 +1,8 @@
 <template>
     <div class="commodity">
-        <div class="commodity-header">
-            Commodities
-        </div>
+<!--        <div class="commodity-header">-->
+<!--            Commodities-->
+<!--        </div>-->
         <div
             class="commodity-item"
             v-for="x in commodities"
@@ -33,20 +33,21 @@ onMounted(async () => {
 <style scoped>
 .commodity {
     height: 100%;
-    background: var(--ui-main-color-primary-2);
+    background: var(--ui-main-color-blue-0);
+    /*color: white;*/
 }
 
 .commodity-header {
     padding: 12px 12px;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 18px;
+    /*font-weight: bold;*/
     background: inherit;
-    color: white;
+    color: inherit;
 }
 
 .commodity-item {
     background: inherit;
-    color: white;
+    color: inherit;
     height: 36px;
     padding: 6px 12px;
     display: flex;

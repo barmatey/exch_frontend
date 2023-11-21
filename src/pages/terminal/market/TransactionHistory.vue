@@ -32,7 +32,7 @@ const p = defineProps<{
 
 <style scoped>
 .transaction-history {
-    background: var(--ui-main-color-primary-2);
+    background: var(--ui-main-color-blue-0);
     padding: 0 12px 6px;
     overflow: auto;
     max-height: 100vh;
@@ -49,7 +49,7 @@ const p = defineProps<{
 
 
 .trs-table-header{
-    background: var(--ui-main-color-primary-2);
+    background: inherit;
     position: sticky;
     top: 0;
 }
@@ -61,7 +61,7 @@ const p = defineProps<{
 }
 
 .trs-item{
-    color: white;
+    color: black;
 }
 
 </style>
