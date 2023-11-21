@@ -3,8 +3,11 @@
         <div class="logo">Alliance</div>
         <div></div>
         <div class="acc-info">
-            <div style="margin-right: 24px;">Cash: </div>
-            <div>$122 500</div>
+            <div class="small-info">
+                <div style="margin-right: 12px;">Cash:</div>
+                <div>$122 500</div>
+            </div>
+            <div>Account</div>
         </div>
     </div>
 </template>
@@ -39,6 +42,14 @@
 
 .acc-info{
     display: flex;
+    justify-content: right;
+}
+
+.small-info{
+    display: flex;
+    border-right: 1px solid var(--ui-main-color-outline-pressed);
+    padding-right: 12px;
+    margin-right: 12px;
 }
 
 </style>
