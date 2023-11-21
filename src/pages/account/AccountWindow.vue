@@ -41,7 +41,6 @@ onMounted(async () => {
     padding-left: 12px;
     padding-right: 12px;
     padding-bottom: 12px;
-    border: 1px solid black;
 }
 
 .account-title {
