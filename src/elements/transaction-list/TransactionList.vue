@@ -2,6 +2,7 @@
     <div class="table">
         <div>
             <div class="table-title table-grid-wrapper">
+                <div class="table-column">Ticker</div>
                 <div class="table-column">Date</div>
                 <div class="table-column">Time</div>
                 <div class="table-column">Price</div>
@@ -9,6 +10,7 @@
             </div>
             <div class="table-grid-wrapper">
                 <div v-for="trs in transactions" style="display: contents">
+                    <div class="table-cell">Temp</div>
                     <div class="table-cell">{{ trs.date.toLocaleDateString("ru") }}</div>
                     <div class="table-cell">{{ trs.date.toLocaleTimeString("ru") }}</div>
                     <div class="table-cell">{{ trs.price }}</div>
@@ -48,7 +50,7 @@ const p = defineProps<{
 
 .table-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 120px);
+    grid-template-columns: repeat(5, 120px);
     grid-row-gap: 2px;
 }
 

@@ -33,6 +33,7 @@ const e = defineEmits<{
     align-items: center;
     padding: 3px 6px;
     border-radius: 6px;
+    user-select: none;
 }
 
 .side-item-selected{
