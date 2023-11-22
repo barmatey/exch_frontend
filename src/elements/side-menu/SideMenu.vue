@@ -36,7 +36,7 @@ const e = defineEmits<{
 }
 
 .side-item-selected{
-    background: var(--ui-main-color-blue-0);
+    background: var(--ui-main-color-blue-excel);
 }
 
 .side-item:hover{
