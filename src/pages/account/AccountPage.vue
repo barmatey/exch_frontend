@@ -12,7 +12,7 @@
             </div>
 
             <div class="table-area">
-                <order-list-component/>
+                <component :is="components[selectedItem.title]"/>
             </div>
         </div>
     </div>
@@ -35,7 +35,10 @@ const sideItems: Ref<SideMenuItem[]> = ref([
     {title: "Deals", isSelected: false},
 ])
 
-
+const components = {
+    "Orders": OrderListComponent,
+    "Transactions": TransactionList,
+}
 const transactions: Transaction[] = [{date: new Date(), price: 13, quantity: 100}]
 const selectedItem = ref(sideItems.value[0])
 
