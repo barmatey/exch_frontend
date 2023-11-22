@@ -31,18 +31,18 @@ import {Order, OrderDirection, OrderType} from "../../elements/order-list/domain
 import {Id, TEMP_ACC_ID, Ticker} from "../../core";
 import SideMenu from "../../elements/side-menu/SideMenu.vue";
 import {SideMenuItem} from "../../elements/side-menu/domain";
-import {ref, Ref} from "vue";
+import {onMounted, ref, Ref} from "vue";
 import {Transaction} from "../../elements/transaction-list/domain";
+import {OrderGateway} from "../../elements/order-list/gateway";
 
-const order = (): Order => ({
-    account: TEMP_ACC_ID,
-    ticker: 'OIL',
-    price: Math.round(Math.random() * 1000),
-    quantity: 100,
-    dtype: 'LIMIT',
-    direction: 'BUY',
+
+const orders: Ref<Order[]> = ref([])
+onMounted(async () => {
+    const orderGW = new OrderGateway()
+    orders.value = await orderGW.getAccountOrders(TEMP_ACC_ID)
 })
-const orders: Order[] = [order(), order(), order(), order(), order()]
+
+
 const sideItems: Ref<SideMenuItem[]> = ref([
     {title: "Orders", isSelected: true},
     {title: "Transactions", isSelected: false},
@@ -97,6 +97,7 @@ function handleSelectingSideMenuItem(item: SideMenuItem) {
 
 .table-area {
     grid-area: table;
+    max-height: calc(100vh - 270px);
 
 }
 </style>

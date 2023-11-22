@@ -1,6 +1,6 @@
 <template>
     <div class="table">
-        <div>
+        <div style="position: relative">
             <div class="table-title table-grid-wrapper">
                 <div class="table-column">Ticker</div>
                 <div class="table-column">Direction</div>
@@ -42,12 +42,16 @@ const p = defineProps<{
     border: 2px solid var(--ui-main-color-blue-excel);
     border-radius: 6px;
     width: max-content;
+    height: 100%;
+    overflow: auto;
 }
 
 .table-title {
     font-weight: bold;
     height: 40px;
     background: var(--ui-main-color-blue-excel);
+    position: sticky;
+    top: 0;
 }
 
 .table-column{

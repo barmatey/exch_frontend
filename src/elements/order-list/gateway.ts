@@ -1,6 +1,7 @@
 import {BASE_HOST, Id, Ticker} from "../../core";
-import {Order, OrderBook, Transaction} from "./domain";
+import {Order, OrderBook, OrderDirection, OrderType, Transaction} from "./domain";
 import {Ref} from "vue";
+import {axiosWrapper} from "../../shared/axios-wrapper";
 
 interface TransactionSchema {
     uuid: string,
@@ -10,20 +11,31 @@ interface TransactionSchema {
     quantity: number,
 }
 
-interface OrderCreateSchema {
-    account: Id,
-    ticker: Ticker,
-    dtype: string,
-    direction: string,
-    price: number,
-    quantity: number,
-}
-
 function transactionDeserializer(schema: TransactionSchema): Transaction {
     return {
         date: new Date(schema.date),
         price: schema.price,
         quantity: schema.quantity,
+    }
+}
+
+interface OrderCreateSchema {
+    account: Id,
+    ticker: Ticker,
+    dtype: OrderType,
+    direction: OrderDirection,
+    price: number,
+    quantity: number,
+}
+
+function orderCreateDeserializer(data: OrderCreateSchema): Order {
+    return {
+        account: data.account,
+        direction: data.direction,
+        dtype: data.dtype,
+        price: data.price,
+        quantity: data.quantity,
+        ticker: data.ticker
     }
 }
 
@@ -79,9 +91,10 @@ export class OrderBookGateway {
         }
         this.ws.onclose = () => console.log("WebSocket closed")
     }
+
     destroyWebsocket() {
         this.orderBook = undefined
-        this.transactions  = undefined
+        this.transactions = undefined
         this.ws!.close()
         this.ws = undefined
     }
@@ -92,5 +105,14 @@ export class OrderBookGateway {
         const data: OrderCreateSchema = orderCreateSerializer(order)
         this.ws.send(JSON.stringify(data))
         console.log("ssendOrder")
+    }
+}
+
+
+export class OrderGateway {
+    async getAccountOrders(account_id: Id): Promise<Order[]> {
+        const url = `/order/${account_id}`
+        const data: OrderCreateSchema[] = (await axiosWrapper.get(url)).data
+        return data.map(item => orderCreateDeserializer(item))
     }
 }
