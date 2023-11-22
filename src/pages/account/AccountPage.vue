@@ -7,11 +7,15 @@
             <div class="sidebar-area">
                 <side-menu
                     :items="sideItems"
-                    @onSelect="(item) => handleSelectingSideMenuItem(item)"/>
+                    @onSelect="(item) => handleSelectingSideMenuItem(item)"
+                />
             </div>
 
             <div class="table-area">
-                <order-list :orders="orders"/>
+                <component
+                    :is="component[selectedItem.title]"
+                    :orders="orders"
+                />
             </div>
         </div>
     </div>
@@ -21,6 +25,7 @@
 <script setup lang="ts">
 import AccountWindow from "./AccountWindow.vue";
 import {OrderList} from "../../elements/order-list";
+import {TransactionList} from "../../elements/transaction-list";
 import {Order, OrderDirection, OrderType} from "../../elements/order-list/domain";
 import {Id, TEMP_ACC_ID, Ticker} from "../../core";
 import SideMenu from "../../elements/side-menu/SideMenu.vue";
@@ -42,12 +47,20 @@ const sideItems: Ref<SideMenuItem[]> = ref([
     {title: "Deals", isSelected: false},
 ])
 
+const selectedItem = ref(sideItems.value[0])
+
+const component = {
+    Orders: OrderList,
+    Transactions: TransactionList,
+}
+
 function handleSelectingSideMenuItem(item: SideMenuItem) {
     sideItems.value.forEach(x => {
         x.title === item.title
             ? x.isSelected = true
             : x.isSelected = false
     })
+    selectedItem.value = item
 }
 </script>
 
@@ -75,13 +88,11 @@ function handleSelectingSideMenuItem(item: SideMenuItem) {
 
 .sidebar-area {
     grid-area: sidebar;
-    margin-top: 60px;
 }
 
 
 .table-area {
     grid-area: table;
-    margin-top: 12px;
 
 }
 </style>

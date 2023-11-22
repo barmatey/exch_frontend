@@ -1,19 +1,15 @@
 <template>
-    <div>
-        <div class="order-table-title">
-            Orders
-        </div>
-        <div class="order-window">
-
-            <div class="order-table" style="border-bottom: 1px solid black">
-                <div class="table-cell">Ticker</div>
-                <div class="table-cell">Direction</div>
-                <div class="table-cell">Price</div>
-                <div class="table-cell">Quantity</div>
-                <div class="table-cell">Type</div>
-                <div></div>
+    <div class="table">
+        <div>
+            <div class="table-title table-grid-wrapper">
+                <div class="table-column">Ticker</div>
+                <div class="table-column">Direction</div>
+                <div class="table-column">Price</div>
+                <div class="table-column">Quantity</div>
+                <div class="table-column">Type</div>
+                <div class="table-column"></div>
             </div>
-            <div class="order-table">
+            <div class="table-grid-wrapper">
 
                 <div v-for="order in orders" style="display: contents">
                     <div class="table-cell">{{ order.ticker }}</div>
@@ -21,14 +17,13 @@
                     <div class="table-cell">{{ order.price }}</div>
                     <div class="table-cell">{{ order.quantity }}</div>
                     <div class="table-cell">{{ order.dtype }}</div>
-                    <div style="text-align: center">
+                    <div class="table-cell" style="text-align: center">
                         <button>Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 
 </template>
@@ -43,26 +38,31 @@ const p = defineProps<{
 </script>
 
 <style scoped>
-.order-window {
-    border: 1px solid black;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+.table {
+    background: var(--ui-main-color-blue-2);
+    border: 2px solid var(--ui-main-color-blue-0);
+    border-radius: 6px;
+    width: max-content;
 }
 
-.order-table-title {
-    font-size: 24px;
-    margin-bottom: 12px;
-    /*background: var(--ui-main-color-primary);*/
-    /*color: white;*/
+.table-title {
+    font-weight: bold;
+    height: 40px;
+    background: var(--ui-main-color-blue-excel);
 }
 
-.order-table {
+.table-column{
+    padding: 6px 12px;
+}
+
+.table-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(5, 1fr) 80px;
+    grid-template-columns: repeat(5, 120px) 120px;
+    grid-row-gap: 2px;
 }
 
 .table-cell {
-    padding: 0 6px;
+    padding: 6px 12px;
+    background: white;
 }
 </style>
