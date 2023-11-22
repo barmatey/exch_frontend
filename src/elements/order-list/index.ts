@@ -1,1 +1,1 @@
-export {default as OrderList} from "./OrderList.vue"
+export {default as OrderListComponent} from "./OrderListComponent.vue"

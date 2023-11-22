@@ -12,10 +12,7 @@
             </div>
 
             <div class="table-area">
-                <order-list
-                    :orders="orders"
-                    @onCancel="handleCancelOrder"
-                />
+                <order-list-component/>
             </div>
         </div>
     </div>
@@ -24,28 +21,12 @@
 
 <script setup lang="ts">
 import AccountWindow from "./AccountWindow.vue";
-import {OrderList} from "../../elements/order-list";
+import {OrderListComponent} from "../../elements/order-list";
 import {TransactionList} from "../../elements/transaction-list";
-import {Order, OrderDirection, OrderType} from "../../elements/order-list/domain";
-import {Id, TEMP_ACC_ID, Ticker} from "../../core";
 import SideMenu from "../../elements/side-menu/SideMenu.vue";
 import {SideMenuItem} from "../../elements/side-menu/domain";
-import {onMounted, ref, Ref} from "vue";
+import {ref, Ref} from "vue";
 import {Transaction} from "../../elements/transaction-list/domain";
-import {OrderGateway} from "../../elements/order-list/gateway";
-
-
-const orders: Ref<Order[]> = ref([])
-const orderGW = new OrderGateway()
-
-async function handleCancelOrder(order: Order) {
-    await orderGW.cancelOrder(order)
-    orders.value = orders.value.filter(item => item.id != order.id)
-}
-
-onMounted(async () => {
-    orders.value = await orderGW.getAccountOrders(TEMP_ACC_ID)
-})
 
 
 const sideItems: Ref<SideMenuItem[]> = ref([
@@ -58,10 +39,6 @@ const sideItems: Ref<SideMenuItem[]> = ref([
 const transactions: Transaction[] = [{date: new Date(), price: 13, quantity: 100}]
 const selectedItem = ref(sideItems.value[0])
 
-const component = {
-    Orders: OrderList,
-    Transactions: TransactionList,
-}
 
 function handleSelectingSideMenuItem(item: SideMenuItem) {
     sideItems.value.forEach(x => {
