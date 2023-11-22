@@ -25,9 +25,3 @@ export interface Order {
     dtype: OrderType,
     direction: OrderDirection,
 }
-
-export interface Transaction {
-    date: Date,
-    price: number,
-    quantity: number,
-}

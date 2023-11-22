@@ -10,7 +10,6 @@
                 <div class="table-column"></div>
             </div>
             <div class="table-grid-wrapper">
-
                 <div v-for="order in orders" style="display: contents">
                     <div class="table-cell">{{ order.ticker }}</div>
                     <div class="table-cell">{{ order.direction }}</div>
@@ -39,8 +38,8 @@ const p = defineProps<{
 
 <style scoped>
 .table {
-    background: var(--ui-main-color-blue-2);
-    border: 2px solid var(--ui-main-color-blue-0);
+    background: var(--ui-main-color-blue-excel);
+    border: 2px solid var(--ui-main-color-blue-excel);
     border-radius: 6px;
     width: max-content;
 }
@@ -57,7 +56,7 @@ const p = defineProps<{
 
 .table-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(5, 120px) 120px;
+    grid-template-columns: repeat(5, 120px) 90px;
     grid-row-gap: 2px;
 }
 

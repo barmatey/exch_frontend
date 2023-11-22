@@ -15,6 +15,7 @@
                 <component
                     :is="component[selectedItem.title]"
                     :orders="orders"
+                    :transactions="transactions"
                 />
             </div>
         </div>
@@ -31,6 +32,7 @@ import {Id, TEMP_ACC_ID, Ticker} from "../../core";
 import SideMenu from "../../elements/side-menu/SideMenu.vue";
 import {SideMenuItem} from "../../elements/side-menu/domain";
 import {ref, Ref} from "vue";
+import {Transaction} from "../../elements/transaction-list/domain";
 
 const order = (): Order => ({
     account: TEMP_ACC_ID,
@@ -47,6 +49,8 @@ const sideItems: Ref<SideMenuItem[]> = ref([
     {title: "Deals", isSelected: false},
 ])
 
+
+const transactions: Transaction[] = [{date: new Date(), price: 13, quantity: 100}]
 const selectedItem = ref(sideItems.value[0])
 
 const component = {
