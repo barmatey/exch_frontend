@@ -20,6 +20,7 @@ function transactionDeserializer(schema: TransactionSchema): Transaction {
 }
 
 interface OrderCreateSchema {
+    uuid?: Id,
     account: Id,
     ticker: Ticker,
     dtype: OrderType,
@@ -30,6 +31,7 @@ interface OrderCreateSchema {
 
 function orderCreateDeserializer(data: OrderCreateSchema): Order {
     return {
+        id: Id(data.uuid),
         account: data.account,
         direction: data.direction,
         dtype: data.dtype,
@@ -41,6 +43,7 @@ function orderCreateDeserializer(data: OrderCreateSchema): Order {
 
 function orderCreateSerializer(order: Order): OrderCreateSchema {
     return {
+        uuid: order.id,
         account: order.account,
         direction: order.direction,
         dtype: order.dtype,
@@ -114,5 +117,11 @@ export class OrderGateway {
         const url = `/order/${account_id}`
         const data: OrderCreateSchema[] = (await axiosWrapper.get(url)).data
         return data.map(item => orderCreateDeserializer(item))
+    }
+
+    async cancelOrder(order: Order): Promise<void>{
+        const url = `/order/cancel`
+        const data: OrderCreateSchema = orderCreateSerializer(order)
+        await axiosWrapper.patch(url,  data)
     }
 }

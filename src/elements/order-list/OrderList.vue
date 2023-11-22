@@ -17,7 +17,7 @@
                     <div class="table-cell">{{ order.quantity }}</div>
                     <div class="table-cell">{{ order.dtype }}</div>
                     <div class="table-cell" style="text-align: center">
-                        <button>Cancel</button>
+                        <button @click="$emit('onCancel', order)">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -28,11 +28,15 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps} from "vue";
+import {defineEmits, defineProps} from "vue";
 import {Order} from "./domain";
 
 const p = defineProps<{
     orders: Order[]
+}>()
+
+const e = defineEmits<{
+     (e: 'onCancel', item: Order): void
 }>()
 </script>
 

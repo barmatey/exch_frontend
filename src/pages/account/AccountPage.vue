@@ -12,10 +12,9 @@
             </div>
 
             <div class="table-area">
-                <component
-                    :is="component[selectedItem.title]"
+                <order-list
                     :orders="orders"
-                    :transactions="transactions"
+                    @onCancel="handleCancelOrder"
                 />
             </div>
         </div>
@@ -37,8 +36,14 @@ import {OrderGateway} from "../../elements/order-list/gateway";
 
 
 const orders: Ref<Order[]> = ref([])
+const orderGW = new OrderGateway()
+
+async function handleCancelOrder(order: Order) {
+    await orderGW.cancelOrder(order)
+    orders.value = orders.value.filter(item => item.id != order.id)
+}
+
 onMounted(async () => {
-    const orderGW = new OrderGateway()
     orders.value = await orderGW.getAccountOrders(TEMP_ACC_ID)
 })
 
