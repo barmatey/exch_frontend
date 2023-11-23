@@ -31,7 +31,6 @@ import {ref, Ref} from "vue";
 const sideItems: Ref<SideMenuItem[]> = ref([
     {title: "Orders", isSelected: true},
     {title: "Transactions", isSelected: false},
-    {title: "Deals", isSelected: false},
 ])
 
 const components = {
