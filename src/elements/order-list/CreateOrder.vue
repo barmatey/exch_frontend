@@ -26,8 +26,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--ui-main-color-primary);
-    width: 600px;
+    background: var(--ui-main-color-primary-hover);
+    width: 576px;
     border-radius: 6px;
     padding: 12px;
 }
@@ -49,6 +49,8 @@ button {
     border-radius: 18px;
     border: none;
     margin-top: 24px;
+    cursor: pointer;
+    font-weight: normal;
 }
 
 label {
