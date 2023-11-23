@@ -3,7 +3,8 @@
         <div></div>
         <div>
             <level-two :orderBook="orderBook"/>
-            <create-order/>
+            <create-order :ticker="ticker"/>
+            <order-list :orders="accountOrders" style="height: 200px; width: 600px; margin-top: 24px"/>
         </div>
         <transaction-list :transactions="transactions" style="height: calc(100vh - 60px);"/>
 
@@ -17,6 +18,8 @@ import {Transaction} from "../../elements/transaction-list/domain";
 import {CreateOrder} from "../../elements/order-list/";
 import {LevelTwo} from "../../elements/level2/";
 import {OrderBook} from "../../elements/level2/domain";
+import {Order} from "../../elements/order-list/domain";
+import {OrderList} from "../../elements/order-list/";
 
 const ticker = 'OIL'
 
@@ -30,6 +33,8 @@ orderBook.value.sellers.set(15, 300)
 onMounted(async () => {
     transactions.value = await trsRepo.getTickerTransactions(ticker)
 })
+
+const accountOrders: Ref<Order[]> = ref([])
 </script>
 
 <style scoped>

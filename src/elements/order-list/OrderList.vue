@@ -64,7 +64,7 @@ const e = defineEmits<{
 
 .table-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(5, 120px) 90px;
+    grid-template-columns: repeat(5, calc((100% - 90px) / 5)) 90px;
     grid-row-gap: 2px;
 }
 
