@@ -36,14 +36,17 @@ const p = defineProps<{
     border: 2px solid var(--ui-main-color-blue-excel);
     border-radius: 6px;
     width: max-content;
+    height: 100%;
+    overflow: auto;
 }
 
 .table-title {
     font-weight: bold;
     height: 40px;
     background: var(--ui-main-color-blue-excel);
+    position: sticky;
+    top: 0;
 }
-
 .table-column {
     padding: 6px 12px;
 }

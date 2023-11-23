@@ -22,11 +22,10 @@
 <script setup lang="ts">
 import AccountWindow from "./AccountWindow.vue";
 import {OrderListComponent} from "../../elements/order-list";
-import {TransactionList} from "../../elements/transaction-list";
+import {TransactionListComponent} from "../../elements/transaction-list";
 import SideMenu from "../../elements/side-menu/SideMenu.vue";
 import {SideMenuItem} from "../../elements/side-menu/domain";
 import {ref, Ref} from "vue";
-import {Transaction} from "../../elements/transaction-list/domain";
 
 
 const sideItems: Ref<SideMenuItem[]> = ref([
@@ -37,9 +36,8 @@ const sideItems: Ref<SideMenuItem[]> = ref([
 
 const components = {
     "Orders": OrderListComponent,
-    "Transactions": TransactionList,
+    "Transactions": TransactionListComponent,
 }
-const transactions: Transaction[] = [{date: new Date(), price: 13, quantity: 100}]
 const selectedItem = ref(sideItems.value[0])
 
 

@@ -1,1 +1,1 @@
-export {default as TransactionList} from "./TransactionList.vue"
+export {default as TransactionListComponent} from "./TransactionListComponent.vue"
