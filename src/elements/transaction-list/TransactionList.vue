@@ -1,24 +1,27 @@
 <template>
-    <div class="table">
-        <div>
-            <div class="table-title table-grid-wrapper">
-                <div class="table-column">Ticker</div>
-                <div class="table-column">Date</div>
-                <div class="table-column">Time</div>
-                <div class="table-column">Price</div>
-                <div class="table-column">Quantity</div>
-            </div>
-            <div class="table-grid-wrapper">
-                <div v-for="trs in transactions" style="display: contents">
-                    <div class="table-cell">Temp</div>
-                    <div class="table-cell">{{ trs.date.toLocaleDateString("ru") }}</div>
-                    <div class="table-cell">{{ trs.date.toLocaleTimeString("ru") }}</div>
-                    <div class="table-cell">{{ trs.price }}</div>
-                    <div class="table-cell">{{ trs.quantity }}</div>
+    <div>
+        <div class="table">
+            <div>
+                <div class="table-title table-grid-wrapper">
+                    <div class="table-column">Ticker</div>
+                    <div class="table-column">Date</div>
+                    <div class="table-column">Time</div>
+                    <div class="table-column">Price</div>
+                    <div class="table-column">Quantity</div>
+                </div>
+                <div class="table-grid-wrapper">
+                    <div v-for="trs in transactions" style="display: contents">
+                        <div class="table-cell">Temp</div>
+                        <div class="table-cell">{{ trs.date.toLocaleDateString("ru") }}</div>
+                        <div class="table-cell">{{ trs.date.toLocaleTimeString("ru") }}</div>
+                        <div class="table-cell">{{ trs.price }}</div>
+                        <div class="table-cell">{{ trs.quantity }}</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <script setup lang="ts">
@@ -37,7 +40,7 @@ const p = defineProps<{
     border-radius: 6px;
     width: max-content;
     height: 100%;
-    overflow: auto;
+    overflow-y: scroll;
 }
 
 .table-title {

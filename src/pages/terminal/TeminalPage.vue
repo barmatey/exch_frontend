@@ -1,6 +1,8 @@
 <template>
-<div>
-    <transaction-list :transactions="transactions"/>
+<div class="terminal terminal-grid-wrapper">
+    <div></div>
+    <create-order/>
+    <transaction-list :transactions="transactions" style="height: 500px;"/>
 </div>
 </template>
 
@@ -8,6 +10,7 @@
 import {TransactionList, TransactionRepo} from "../../elements/transaction-list/";
 import {onMounted, Ref, ref} from "vue";
 import {Transaction} from "../../elements/transaction-list/domain";
+import {CreateOrder} from "../../elements/order-list/";
 
 const ticker = 'OIL'
 
@@ -20,5 +23,12 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.terminal{
 
+}
+.terminal-grid-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 600px max-content;
+    grid-gap: 24px;
+}
 </style>
