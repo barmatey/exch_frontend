@@ -58,10 +58,11 @@ export class OrderGateway {
         return data.map(item => orderRetrieveDeserializer(item))
     }
 
-    async createOrder(order: Order) {
+    async createOrder(order: Order): Promise<Order> {
         const url = `/order`
         const data: OrderCreateSchema = orderCreateSerializer(order)
-        await axiosWrapper.post(url, data)
+        const createdOrder: OrderRetrieveSchema = (await axiosWrapper.post(url, data)).data
+        return orderRetrieveDeserializer(createdOrder)
     }
 
     async cancelOrder(order: Order): Promise<void> {
