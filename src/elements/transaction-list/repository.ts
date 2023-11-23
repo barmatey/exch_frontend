@@ -27,4 +27,17 @@ export class TransactionRepo {
         const data: TransactionSchema[] = (await axiosWrapper.get(url)).data
         return data.map(item => transactionDeserializer(item))
     }
+
+    async getTickerTransactions(ticker: Ticker): Promise<Transaction[]> {
+        const url = '/transaction'
+        const params = {
+            ticker: ticker,
+            slice_from: 0,
+            slice_to: 100,
+            order_by: 'date',
+            asc: false,
+        }
+        const data: TransactionSchema[] = (await axiosWrapper.get(url, params)).data
+        return data.map(item => transactionDeserializer(item))
+    }
 }

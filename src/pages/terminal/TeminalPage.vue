@@ -1,56 +1,24 @@
 <template>
-    <div class="terminal-grid-wrapper terminal-page">
-        <commodity-map/>
-        <div class="content">
-            <commodity-info
-                :commodity="store.selectedCommodity"
-                :lastPrice="Number(transactions.at(-1)?.price)"
-                style="margin-bottom: 6px"
-            />
-            <o-book :orderBook="orderBook" :gateway="gateway"/>
-        </div>
-        <transaction-history :transactions="transactions"/>
-    </div>
+<div>
+    <transaction-list :transactions="transactions"/>
+</div>
 </template>
 
 <script setup lang="ts">
-import {OrderBookGateway} from "../../elements/order-list/gateway";
-import {computed, Ref, ref, watch} from "vue";
-import {createOrderBook, OrderBook, Transaction} from "../../elements/order-list/domain";
-import {OBook, TransactionHistory, CommodityInfo} from "./market";
-import {CommodityMap} from "./commodity";
-import {useTerminalStore} from "./store";
+import {TransactionList, TransactionRepo} from "../../elements/transaction-list/";
+import {onMounted, Ref, ref} from "vue";
+import {Transaction} from "../../elements/transaction-list/domain";
 
-const gateway = new OrderBookGateway()
-const orderBook: Ref<OrderBook> = ref(createOrderBook("OIL"))
+const ticker = 'OIL'
+
+const trsRepo = new TransactionRepo()
 const transactions: Ref<Transaction[]> = ref([])
-gateway.createWebsocket(orderBook, transactions)
 
-const store = useTerminalStore()
-const target = computed(() => store.selectedCommodity)
-watch(target, () => {
-    gateway.destroyWebsocket()
-    orderBook.value = createOrderBook(target.value.ticker)
-    transactions.value = []
-    gateway.createWebsocket(orderBook, transactions)
+onMounted(async () => {
+    transactions.value = await trsRepo.getTickerTransactions(ticker)
 })
-
 </script>
 
 <style scoped>
-.terminal-page {
-    height: calc(100vh - 48px);
-}
 
-.terminal-grid-wrapper {
-    display: grid;
-    grid-template-columns: 240px 1fr 400px;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 24px;
-}
 </style>

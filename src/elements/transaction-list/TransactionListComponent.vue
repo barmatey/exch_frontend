@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import {TransactionRepo} from "./gateway";
+import {TransactionRepo} from "./repository";
 import {onMounted, ref, Ref} from "vue";
 import {Transaction} from "./domain";
 import {TEMP_ACC_ID} from "../../core";
