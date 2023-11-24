@@ -2,7 +2,7 @@
     <div class="terminal terminal-grid-wrapper">
         <div></div>
         <div>
-            <level-two :orderBook="orderBook"/>
+            <level-two :ticker="ticker"/>
             <create-order :ticker="ticker"/>
             <order-list :orders="accountOrders" style="height: 200px; width: 600px; margin-top: 24px"/>
         </div>
@@ -15,26 +15,19 @@
 import {TransactionList, TransactionRepo} from "../../elements/transaction-list/";
 import {onMounted, Ref, ref} from "vue";
 import {Transaction} from "../../elements/transaction-list/domain";
-import {CreateOrder} from "../../elements/order-list/";
+import {CreateOrder, OrderList} from "../../elements/order-list/";
 import {LevelTwo} from "../../elements/level2/";
-import {OrderBook} from "../../elements/level2/domain";
 import {Order} from "../../elements/order-list/domain";
-import {OrderList} from "../../elements/order-list/";
 
 const ticker = 'OIL'
 
-const trsRepo = new TransactionRepo()
 const transactions: Ref<Transaction[]> = ref([])
-
-const orderBook: Ref<OrderBook> = ref({buyers: new Map(), sellers: new Map()})
-orderBook.value.buyers.set(10, 100)
-orderBook.value.sellers.set(15, 300)
+const accountOrders: Ref<Order[]> = ref([])
 
 onMounted(async () => {
+    const trsRepo = new TransactionRepo()
     transactions.value = await trsRepo.getTickerTransactions(ticker)
 })
-
-const accountOrders: Ref<Order[]> = ref([])
 </script>
 
 <style scoped>

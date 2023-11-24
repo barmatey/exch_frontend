@@ -42,7 +42,6 @@ async function createOrder(direction: OrderDirection) {
     }
     const gateway = new OrderGateway()
     const order = await gateway.createOrder(data)
-    console.log(order)
 }
 </script>
 

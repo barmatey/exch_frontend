@@ -15,13 +15,19 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps} from "vue";
+import {defineProps, Ref, ref} from "vue";
 import LevelSide from "./LevelSide.vue";
 import {OrderBook} from "./domain";
+import {Ticker} from "../../core";
+import {OrderBookGateway} from "./gateway";
 
 const p = defineProps<{
-    orderBook: OrderBook,
+    ticker: Ticker,
 }>()
+
+const orderBook: Ref<OrderBook> = ref({ticker: p.ticker, buyers: new Map(), sellers: new Map()})
+const gateway = new OrderBookGateway(orderBook)
+gateway.createWebsocket()
 </script>
 
 <style scoped>
