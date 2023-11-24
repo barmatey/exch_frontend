@@ -1,6 +1,7 @@
-import {Id, Ticker} from "../../core";
+import {BASE_HOST, Id, Ticker} from "../../core";
 import {Transaction} from "./domain";
 import {axiosWrapper} from "../../shared/axios-wrapper";
+import {Ref} from "vue";
 
 interface TransactionSchema {
     uuid: Id,
@@ -21,7 +22,7 @@ function transactionDeserializer(data: TransactionSchema): Transaction {
 }
 
 
-export class TransactionRepo {
+export class TransactionGateway {
     async getAccountTransactions(accountId: Id): Promise<Transaction[]> {
         const url = `/transaction/${accountId}`
         const data: TransactionSchema[] = (await axiosWrapper.get(url)).data
@@ -33,11 +34,21 @@ export class TransactionRepo {
         const params = {
             ticker: ticker,
             slice_from: 0,
-            slice_to: 100,
+            slice_to: 50,
             order_by: 'date',
             asc: false,
         }
         const data: TransactionSchema[] = (await axiosWrapper.get(url, params)).data
-        return data.map(item => transactionDeserializer(item))
+        return data.reverse().map(item => transactionDeserializer(item))
+    }
+
+    async createWebSocket(ticker: Ticker, target: Ref<Transaction[]>) {
+        const url = `ws://${BASE_HOST}/transaction/ws/${ticker}`
+        const ws = new WebSocket(url)
+        ws.onopen = () => console.log('WebSocket open')
+        ws.onclose = () => console.log('WebSocket close')
+        ws.onmessage = (msg) => {
+            target.value.push(transactionDeserializer(JSON.parse(msg.data)))
+        }
     }
 }

@@ -10,8 +10,8 @@
                     <div class="table-column">Quantity</div>
                 </div>
                 <div class="table-grid-wrapper">
-                    <div v-for="trs in transactions" style="display: contents">
-                        <div class="table-cell">Temp</div>
+                    <div v-for="trs in transactions.slice(0).reverse()" style="display: contents">
+                        <div class="table-cell">{{ trs.ticker }}</div>
                         <div class="table-cell">{{ trs.date.toLocaleDateString("ru") }}</div>
                         <div class="table-cell">{{ trs.date.toLocaleTimeString("ru") }}</div>
                         <div class="table-cell">{{ trs.price }}</div>
@@ -25,12 +25,22 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps} from "vue";
+import {defineProps, onMounted, ref, Ref} from "vue";
 import {Transaction} from "./domain";
+import {Ticker} from "../../core";
+import {TransactionGateway} from "./gateway";
 
 const p = defineProps<{
-    transactions: Transaction[]
+    ticker: Ticker
 }>()
+
+const transactions: Ref<Transaction[]> = ref([])
+
+onMounted(async () => {
+    const gateway = new TransactionGateway()
+    transactions.value = await gateway.getTickerTransactions(p.ticker)
+    await gateway.createWebSocket(p.ticker, transactions)
+})
 </script>
 
 <style scoped>
