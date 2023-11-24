@@ -26,7 +26,7 @@ const accountOrders: Ref<Order[]> = ref([])
 
 onMounted(async () => {
     const trsRepo = new TransactionRepo()
-    transactions.value = await trsRepo.getTickerTransactions(ticker)
+    // transactions.value = await trsRepo.getTickerTransactions(ticker)
 })
 </script>
 
