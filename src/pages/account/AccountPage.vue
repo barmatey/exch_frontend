@@ -21,7 +21,6 @@
 
 <script setup lang="ts">
 import AccountWindow from "./AccountWindow.vue";
-import {OrderListComponent} from "../../elements/order-list";
 import {TransactionListComponent} from "../../elements/transaction-list";
 import SideMenu from "../../elements/side-menu/SideMenu.vue";
 import {SideMenuItem} from "../../elements/side-menu/domain";
@@ -34,7 +33,7 @@ const sideItems: Ref<SideMenuItem[]> = ref([
 ])
 
 const components = {
-    "Orders": OrderListComponent,
+    // "Orders": OrderListComponent,
     "Transactions": TransactionListComponent,
 }
 const selectedItem = ref(sideItems.value[0])

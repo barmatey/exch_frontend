@@ -28,7 +28,7 @@ const p = defineProps<{
 }>()
 
 const price = ref(5)
-const quantity = ref(100)
+const quantity = ref(1)
 
 async function createOrder(direction: OrderDirection) {
     const data: Order = {

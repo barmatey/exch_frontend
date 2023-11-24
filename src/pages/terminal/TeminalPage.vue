@@ -15,7 +15,7 @@ import {TransactionList} from "../../elements/transaction-list/";
 import {CreateOrder} from "../../elements/order-list/";
 import {LevelTwo} from "../../elements/level2/";
 
-const ticker = 'OIL'
+const ticker = 'SGA'
 
 
 </script>
