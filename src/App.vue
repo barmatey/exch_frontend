@@ -16,7 +16,9 @@ import {HorizontalMenu} from "./elements/menu";
 }
 
 .alliance {
-    background: var(--ui-main-color-white);
+    background: var(--ui-main-color-blue-2);
+    height: 100vh;
+    min-height: max-content;
 
 }
 </style>
