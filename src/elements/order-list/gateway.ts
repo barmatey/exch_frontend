@@ -81,6 +81,7 @@ export class OrderGateway {
     async cancelOrder(order: Order): Promise<void> {
         const url = `/order/cancel`
         const data: OrderRetrieveSchema = orderRetrieveSerializer(order)
+        console.log(data)
         await axiosWrapper.patch(url, data)
     }
 }

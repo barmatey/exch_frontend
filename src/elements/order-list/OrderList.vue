@@ -21,7 +21,7 @@
                     <div class="table-cell">{{ order.dtype }}</div>
                     <div class="table-cell">{{ order.status }}</div>
                     <div class="table-cell" style="text-align: center">
-                        <button>Cancel</button>
+                        <button class="cancel-btn" @click="cancelOrder(order)">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -38,9 +38,14 @@ import {OrderGateway} from "./gateway";
 import {TEMP_ACC_ID} from "../../core";
 
 const orders: Ref<Order[]> = ref([])
+const gateway = new OrderGateway()
+
+
+async function cancelOrder(order: Order) {
+    await gateway.cancelOrder(order)
+}
 
 onMounted(async () => {
-    const gateway = new OrderGateway()
     orders.value = await gateway.getAccountOrders(TEMP_ACC_ID)
 })
 
@@ -88,5 +93,18 @@ onMounted(async () => {
 .table-cell {
     padding: 6px 12px;
     background: white;
+}
+
+.cancel-btn {
+    border: 1px solid var(--ui-main-color-primary);
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    padding: 0 6px;
+
+}
+
+.cancel-btn:hover {
+    background: var(--ui-main-color-outline-pressed);
 }
 </style>
