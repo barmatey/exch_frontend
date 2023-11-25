@@ -28,8 +28,8 @@ export class OrderBookGateway {
     createWebsocket(){
         const url = `ws://${BASE_HOST}/market/ws/${this.target.value.ticker}`
         this.ws = new WebSocket(url)
-        this.ws.onopen = () => console.log('WebSocket open')
-        this.ws.onclose = () => console.log('WebSocket close')
+        this.ws.onopen = () => console.log('Level2 WebSocket open')
+        this.ws.onclose = () => console.log('Level2 WebSocket close')
         this.ws.onmessage = (msg) => {
             this.target.value = orderBookDeserializer(JSON.parse(msg.data))
         }

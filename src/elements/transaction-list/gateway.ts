@@ -45,8 +45,8 @@ export class TransactionGateway {
     async createWebSocket(ticker: Ticker, target: Ref<Transaction[]>) {
         const url = `ws://${BASE_HOST}/transaction/ws/${ticker}`
         const ws = new WebSocket(url)
-        ws.onopen = () => console.log('WebSocket open')
-        ws.onclose = () => console.log('WebSocket close')
+        ws.onopen = () => console.log('Transaction WebSocket open')
+        ws.onclose = () => console.log('Transaction WebSocket close')
         ws.onmessage = (msg) => {
             target.value.push(transactionDeserializer(JSON.parse(msg.data)))
         }

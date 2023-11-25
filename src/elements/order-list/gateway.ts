@@ -56,13 +56,22 @@ function orderRetrieveSerializer(order: Order): OrderRetrieveSchema {
 }
 
 export class OrderGateway {
-    async createWebsocket(target: Ref<Order[]>, accountId: Id) {
-        const url = `ws://${BASE_HOST}/market/ws/${accountId}`
+    createWebsocket(target: Ref<Order[]>, accountId: Id) {
+        const url = `ws://${BASE_HOST}/order/ws/${accountId}`
         const ws = new WebSocket(url)
-        ws.onopen = () => console.log('WebSocket open')
-        ws.onclose = () => console.log('WebSocket close')
+        ws.onopen = () => console.log('Order WebSocket open')
+        ws.onclose = () => console.log('Order WebSocket close')
         ws.onmessage = (msg) => {
+            const order = orderRetrieveDeserializer(JSON.parse(msg.data))
+            switch (order.status){
+                case "PENDING":
+                    target.value.push(order)
+                    break
+                default:
+                    throw Error()
+            }
         }
+        return ws
     }
 
     async getAccountOrders(account_id: Id): Promise<Order[]> {
@@ -81,7 +90,6 @@ export class OrderGateway {
     async cancelOrder(order: Order): Promise<void> {
         const url = `/order/cancel`
         const data: OrderRetrieveSchema = orderRetrieveSerializer(order)
-        console.log(data)
         await axiosWrapper.patch(url, data)
     }
 }

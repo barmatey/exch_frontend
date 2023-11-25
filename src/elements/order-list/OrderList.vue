@@ -40,13 +40,14 @@ import {TEMP_ACC_ID} from "../../core";
 const orders: Ref<Order[]> = ref([])
 const gateway = new OrderGateway()
 
-
 async function cancelOrder(order: Order) {
     await gateway.cancelOrder(order)
+    orders.value = orders.value.filter(item => item.id !== order.id)
 }
 
 onMounted(async () => {
     orders.value = await gateway.getAccountOrders(TEMP_ACC_ID)
+    gateway.createWebsocket(orders, TEMP_ACC_ID)
 })
 
 </script>
