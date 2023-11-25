@@ -1,7 +1,8 @@
 <template>
     <div class="table">
         <div style="position: relative">
-            <div class="table-title table-grid-wrapper">
+
+            <div class="table-header table-grid-wrapper">
                 <div class="table-column">Ticker</div>
                 <div class="table-column">Direction</div>
                 <div class="table-column">Price</div>
@@ -17,7 +18,7 @@
                     <div class="table-cell">{{ order.quantity }}</div>
                     <div class="table-cell">{{ order.dtype }}</div>
                     <div class="table-cell" style="text-align: center">
-                        <button @click="$emit('onCancel', order)">Cancel</button>
+                        <button>Cancel</button>
                     </div>
                 </div>
             </div>
@@ -28,16 +29,18 @@
 </template>
 
 <script setup lang="ts">
-import {defineEmits, defineProps} from "vue";
+import {onMounted, Ref, ref} from "vue";
 import {Order} from "./domain";
+import {OrderGateway} from "./gateway";
+import {TEMP_ACC_ID} from "../../core";
 
-const p = defineProps<{
-    orders: Order[]
-}>()
+const orders: Ref<Order[]> = ref([])
 
-const e = defineEmits<{
-     (e: 'onCancel', item: Order): void
-}>()
+onMounted(async () => {
+    const gateway = new OrderGateway()
+    orders.value = await gateway.getAccountOrders(TEMP_ACC_ID)
+})
+
 </script>
 
 <style scoped>
@@ -50,16 +53,26 @@ const e = defineEmits<{
     overflow: auto;
 }
 
-.table-title {
-    font-weight: bold;
-    height: 40px;
+.table-header {
+    height: max-content;
     background: var(--ui-main-color-blue-excel);
     position: sticky;
     top: 0;
 }
 
-.table-column{
+.table-title {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-weight: bold;
+
+}
+
+.table-column {
     padding: 6px 12px;
+        font-weight: bold;
+
 }
 
 .table-grid-wrapper {

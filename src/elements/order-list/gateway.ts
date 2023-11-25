@@ -52,6 +52,15 @@ function orderRetrieveSerializer(order: Order): OrderRetrieveSchema {
 }
 
 export class OrderGateway {
+    async createWebsocket(target: Ref<Order[]>, accountId: Id) {
+        const url = `ws://${BASE_HOST}/market/ws/${accountId}`
+        const ws = new WebSocket(url)
+        ws.onopen = () => console.log('WebSocket open')
+        ws.onclose = () => console.log('WebSocket close')
+        ws.onmessage = (msg) => {
+        }
+    }
+
     async getAccountOrders(account_id: Id): Promise<Order[]> {
         const url = `/order/${account_id}`
         const data: OrderRetrieveSchema[] = (await axiosWrapper.get(url)).data
