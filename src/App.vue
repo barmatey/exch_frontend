@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="alliance">
         <horizontal-menu/>
         <router-view/>
     </div>
@@ -13,5 +13,10 @@ import {HorizontalMenu} from "./elements/menu";
 * {
     margin: 0;
     padding: 0;
+}
+
+.alliance {
+    background: var(--ui-main-color-white);
+
 }
 </style>
