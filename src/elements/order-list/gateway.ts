@@ -1,5 +1,5 @@
 import {BASE_HOST, Id, Ticker} from "../../core";
-import {Order, OrderDirection, OrderType} from "./domain";
+import {Order, OrderDirection, OrderStatus, OrderType} from "./domain";
 import {Ref} from "vue";
 import {axiosWrapper} from "../../shared/axios-wrapper";
 
@@ -10,6 +10,7 @@ interface OrderCreateSchema {
     direction: OrderDirection,
     price: number,
     quantity: number,
+    status: OrderStatus,
 }
 
 function orderCreateSerializer(order: Order): OrderCreateSchema {
@@ -20,6 +21,7 @@ function orderCreateSerializer(order: Order): OrderCreateSchema {
         price: order.price,
         quantity: order.quantity,
         ticker: order.ticker,
+        status: order.status,
     }
 }
 
@@ -35,7 +37,8 @@ function orderRetrieveDeserializer(data: OrderRetrieveSchema): Order {
         dtype: data.dtype,
         price: data.price,
         quantity: data.quantity,
-        ticker: data.ticker
+        ticker: data.ticker,
+        status: data.status,
     }
 }
 
@@ -48,6 +51,7 @@ function orderRetrieveSerializer(order: Order): OrderRetrieveSchema {
         price: order.price,
         quantity: order.quantity,
         ticker: order.ticker,
+        status:order.status,
     }
 }
 

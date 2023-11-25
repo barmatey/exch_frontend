@@ -1,17 +1,17 @@
 <template>
-<div>
-    <div class="level2">
-        <level-side
-            :side="orderBook.buyers"
-            style="border-right: 1px solid black"
-            title="Buy offers"
-        />
-        <level-side
-            :side="orderBook.sellers"
-            title="Sell offers"
-        />
+    <div>
+        <div class="level2">
+            <level-side
+                :side="orderBook.buyers"
+                style="border-right: 1px solid black"
+                title="Buy offers"
+            />
+            <level-side
+                :side="orderBook.sellers"
+                title="Sell offers"
+            />
+        </div>
     </div>
-</div>
 </template>
 
 <script setup lang="ts">
@@ -31,7 +31,7 @@ gateway.createWebsocket()
 </script>
 
 <style scoped>
-.level2{
+.level2 {
     width: max-content;
     height: 400px;
     border-radius: 6px;
