@@ -67,8 +67,15 @@ export class OrderGateway {
                 case "PENDING":
                     target.value.push(order)
                     break
+                case "PARTIAL":
+                    const index = target.value.findIndex(item => item.id === order.id)
+                    target.value[index] = order
+                    break
+                case "COMPLETED":
+                    target.value = target.value.filter(item => item.id !== order.id)
+                    break
                 default:
-                    throw Error()
+                    throw Error(`${order.status}`)
             }
         }
         return ws
