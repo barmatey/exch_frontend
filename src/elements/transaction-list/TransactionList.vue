@@ -2,7 +2,12 @@
     <div>
         <div class="table">
             <div>
-                <div class="table-title table-grid-wrapper">
+
+                <div class="table-column-row table-grid-wrapper">
+                    <div class="table-title">
+                        Last trades
+                    </div>
+                    <div class="table-column">Ticker</div>
                     <div class="table-column">Date</div>
                     <div class="table-column">Time</div>
                     <div class="table-column">Price</div>
@@ -10,6 +15,7 @@
                 </div>
                 <div class="table-grid-wrapper">
                     <div v-for="trs in transactions.slice(0).reverse()" style="display: contents">
+                        <div class="table-cell">{{ trs.ticker }}</div>
                         <div class="table-cell">{{ trs.date.toLocaleDateString("ru") }}</div>
                         <div class="table-cell">{{ trs.date.toLocaleTimeString("ru") }}</div>
                         <div class="table-cell">{{ trs.price }}</div>
@@ -52,24 +58,35 @@ onMounted(async () => {
 }
 
 .table-title {
+    padding: 6px 12px 0;
     font-weight: bold;
-    height: 40px;
-    background: var(--ui-main-color-blue-excel);
+    font-size: 18px;
+    grid-column-start: 1;
+    grid-column-end: 8;
+}
+
+.table-column-row {
+    height: max-content;
     position: sticky;
     top: 0;
+    background: var(--ui-main-color-blue-excel);
+
 }
+
 .table-column {
     padding: 6px 12px;
+    border-bottom: 1px solid black;
+
 }
 
 .table-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 120px);
-    grid-row-gap: 2px;
+    grid-template-columns: repeat(5, 116px);
 }
 
 .table-cell {
-    padding: 6px 12px;
-    background: white;
+    padding: 3px 12px;
+    /*background: white;*/
+    /*border-bottom: 1px solid var(--ui-main-color-blue-excel);*/
 }
 </style>

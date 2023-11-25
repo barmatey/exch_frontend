@@ -3,11 +3,11 @@
         <div></div>
         <div>
             <level-two :ticker="ticker"/>
-            <create-order :ticker="ticker"/>
-            <order-list style="height: 300px; width: 600px; margin-top: 24px;"/>
-        </div>
-        <transaction-list :ticker="ticker" style="height: calc(100vh - 60px);"/>
+            <create-order :ticker="ticker" style="margin-top: 6px"/>
+            <transaction-list :ticker="ticker" style="height: 200px; margin-top: 6px"/>
 
+        </div>
+        <order-list style="height: 300px; width: 600px;"/>
     </div>
 </template>
 
@@ -24,12 +24,12 @@ const ticker = 'SGA'
 
 <style scoped>
 .terminal {
-
+    margin: 24px;
 }
 
 .terminal-grid-wrapper {
     display: grid;
-    grid-template-columns: 1fr max-content max-content;
+    grid-template-columns: 1fr 600px max-content;
     grid-gap: 24px;
 }
 </style>
