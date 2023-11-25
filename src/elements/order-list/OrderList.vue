@@ -3,11 +3,13 @@
         <div style="position: relative">
 
             <div class="table-header table-grid-wrapper">
+                <div class="table-title">Orders</div>
                 <div class="table-column">Ticker</div>
                 <div class="table-column">Direction</div>
                 <div class="table-column">Price</div>
                 <div class="table-column">Quantity</div>
                 <div class="table-column">Type</div>
+                <div class="table-column">Status</div>
                 <div class="table-column"></div>
             </div>
             <div class="table-grid-wrapper">
@@ -17,6 +19,7 @@
                     <div class="table-cell">{{ order.price }}</div>
                     <div class="table-cell">{{ order.quantity }}</div>
                     <div class="table-cell">{{ order.dtype }}</div>
+                    <div class="table-cell">{{ order.status }}</div>
                     <div class="table-cell" style="text-align: center">
                         <button>Cancel</button>
                     </div>
@@ -57,26 +60,28 @@ onMounted(async () => {
     background: var(--ui-main-color-white);
     position: sticky;
     top: 0;
+    border-bottom: 1px solid black;
 }
 
 .table-title {
     grid-column-start: 1;
-    grid-column-end: 7;
+    grid-column-end: 8;
     padding-left: 12px;
     padding-right: 12px;
+    padding-top: 6px;
     font-weight: bold;
+    font-size: 18px;
 
 }
 
 .table-column {
     padding: 6px 12px;
-        font-weight: bold;
 
 }
 
 .table-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(5, calc((100% - 90px) / 5)) 90px;
+    grid-template-columns: repeat(6, 84px) 90px;
     grid-row-gap: 2px;
 }
 

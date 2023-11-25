@@ -4,10 +4,10 @@
         <div>
             <level-two :ticker="ticker"/>
             <create-order :ticker="ticker" style="margin-top: 6px"/>
-            <transaction-list :ticker="ticker" style="height: 200px; margin-top: 6px"/>
+            <transaction-list :ticker="ticker" style="height: calc(100vh - 580px); margin-top: 6px;"/>
 
         </div>
-        <order-list style="height: 300px; width: 600px;"/>
+        <order-list style="height: max-content; max-height: calc(100vh - 80px)"/>
     </div>
 </template>
 
