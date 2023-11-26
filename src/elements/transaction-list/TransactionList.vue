@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps, onMounted, ref, Ref} from "vue";
+import {defineProps, onMounted, ref, Ref, watch} from "vue";
 import {Transaction} from "./domain";
 import {Ticker} from "../../core";
 import {TransactionGateway} from "./gateway";
@@ -39,9 +39,16 @@ const p = defineProps<{
 }>()
 
 const transactions: Ref<Transaction[]> = ref([])
+const gateway = new TransactionGateway()
+
 
 onMounted(async () => {
-    const gateway = new TransactionGateway()
+    transactions.value = await gateway.getTickerTransactions(p.ticker)
+    await gateway.createWebSocket(p.ticker, transactions)
+})
+
+watch(p, async () => {
+    await gateway.destroyWebsocket()
     transactions.value = await gateway.getTickerTransactions(p.ticker)
     await gateway.createWebSocket(p.ticker, transactions)
 })

@@ -23,6 +23,8 @@ function transactionDeserializer(data: TransactionSchema): Transaction {
 
 
 export class TransactionGateway {
+    ws?: WebSocket
+
     async getAccountTransactions(accountId: Id): Promise<Transaction[]> {
         const url = `/transaction/${accountId}`
         const data: TransactionSchema[] = (await axiosWrapper.get(url)).data
@@ -42,6 +44,11 @@ export class TransactionGateway {
         return data.reverse().map(item => transactionDeserializer(item))
     }
 
+    async destroyWebsocket(){
+        this.ws!.close()
+        this.ws = undefined
+    }
+
     async createWebSocket(ticker: Ticker, target: Ref<Transaction[]>) {
         const url = `ws://${BASE_HOST}/transaction/ws/${ticker}`
         const ws = new WebSocket(url)
@@ -50,5 +57,6 @@ export class TransactionGateway {
         ws.onmessage = (msg) => {
             target.value.push(transactionDeserializer(JSON.parse(msg.data)))
         }
+        this.ws = ws
     }
 }
