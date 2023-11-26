@@ -18,20 +18,19 @@ function orderBookDeserializer(data: OrderBookSchema): OrderBook {
 }
 
 export class OrderBookGateway {
-    target: Ref<OrderBook>
     ws?: WebSocket
 
-    constructor(orderBook: Ref<OrderBook>) {
-        this.target = orderBook
+    destroyWebsocket(){
+        this.ws!.close()
     }
 
-    createWebsocket(){
-        const url = `ws://${BASE_HOST}/market/ws/${this.target.value.ticker}`
+    createWebsocket(target: Ref<OrderBook>){
+        const url = `ws://${BASE_HOST}/market/ws/${target.value.ticker}`
         this.ws = new WebSocket(url)
         this.ws.onopen = () => console.log('Level2 WebSocket open')
         this.ws.onclose = () => console.log('Level2 WebSocket close')
         this.ws.onmessage = (msg) => {
-            this.target.value = orderBookDeserializer(JSON.parse(msg.data))
+            target.value = orderBookDeserializer(JSON.parse(msg.data))
         }
     }
 }

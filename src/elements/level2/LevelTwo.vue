@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps, Ref, ref} from "vue";
+import {defineProps, Ref, ref, watch} from "vue";
 import LevelSide from "./LevelSide.vue";
 import {OrderBook} from "./domain";
 import {Ticker} from "../../core";
@@ -26,8 +26,14 @@ const p = defineProps<{
 }>()
 
 const orderBook: Ref<OrderBook> = ref({ticker: p.ticker, buyers: new Map(), sellers: new Map()})
-const gateway = new OrderBookGateway(orderBook)
-gateway.createWebsocket()
+const gateway = new OrderBookGateway()
+gateway.createWebsocket(orderBook)
+
+watch(p, () => {
+    gateway.destroyWebsocket()
+    orderBook.value.ticker = p.ticker
+    gateway.createWebsocket(orderBook)
+})
 </script>
 
 <style scoped>
