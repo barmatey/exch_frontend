@@ -1,0 +1,1 @@
+export {default as CommodityWindow} from "./CommodityWindow.vue"

@@ -1,10 +1,10 @@
 <template>
     <div class="terminal terminal-grid-wrapper">
-        <side-menu/>
+        <commodity-window/>
         <div>
             <level-two :ticker="ticker"/>
-            <create-order :ticker="ticker" style="margin-top: 6px"/>
-            <transaction-list :ticker="ticker" style="height: calc(100vh - 580px); margin-top: 6px;"/>
+            <create-order :ticker="ticker" style="margin-top: 24px"/>
+            <transaction-list :ticker="ticker" style="height: calc(100vh - 614px); margin-top: 24px;"/>
 
         </div>
         <order-list style="height: max-content; max-height: calc(100vh - 80px)"/>
@@ -12,9 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import {SideMenu} from "../../elements/side-menu";
 import {TransactionList} from "../../elements/transaction-list/";
 import {CreateOrder, OrderList} from "../../elements/order-list/";
+import {CommodityWindow} from "../../elements/commodity-window/";
 import {LevelTwo} from "../../elements/level2/";
 
 const ticker = 'SGA'
