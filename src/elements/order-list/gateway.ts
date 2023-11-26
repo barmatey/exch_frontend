@@ -51,7 +51,7 @@ function orderRetrieveSerializer(order: Order): OrderRetrieveSchema {
         price: order.price,
         quantity: order.quantity,
         ticker: order.ticker,
-        status:order.status,
+        status: order.status,
     }
 }
 
@@ -63,9 +63,12 @@ export class OrderGateway {
         ws.onclose = () => console.log('Order WebSocket close')
         ws.onmessage = (msg) => {
             const order = orderRetrieveDeserializer(JSON.parse(msg.data))
-            switch (order.status){
+            switch (order.status) {
                 case "PENDING":
                     target.value.push(order)
+                    break
+                case "CANCELED":
+                    target.value = target.value.filter(item => item.id !== order.id)
                     break
                 case "PARTIAL":
                     const index = target.value.findIndex(item => item.id === order.id)

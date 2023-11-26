@@ -57,10 +57,11 @@ async function createOrder(direction: OrderDirection) {
 }
 
 input {
-    width: 150px;
+    width: 138px;
     height: 36px;
     border-radius: 18px;
     border: none;
+    padding: 0 6px;
 }
 
 input:focus {
