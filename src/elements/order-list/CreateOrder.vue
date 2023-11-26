@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import {defineProps, ref, Ref} from "vue";
+import {defineProps, ref} from "vue";
 import {Order, OrderDirection} from "./domain";
-import {Id, TEMP_ACC_ID, Ticker} from "../../core";
+import {TEMP_ACC_ID, Ticker} from "../../core";
 import {OrderGateway} from "./gateway";
 
 const p = defineProps<{
@@ -39,6 +39,7 @@ async function createOrder(direction: OrderDirection) {
         price: price.value,
         quantity: quantity.value,
         ticker: p.ticker,
+        status: 'PENDING',
     }
     const gateway = new OrderGateway()
     const order = await gateway.createOrder(data)
