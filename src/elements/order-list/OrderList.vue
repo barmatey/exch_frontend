@@ -54,7 +54,7 @@ onMounted(async () => {
 
 <style scoped>
 .table {
-    background: var(--ui-main-color-white);
+    background: var(--ui-main-color-blue-0);
     border-radius: 6px;
     width: max-content;
     height: 100%;
@@ -63,7 +63,7 @@ onMounted(async () => {
 
 .table-header {
     height: max-content;
-    background: var(--ui-main-color-white);
+    background: var(--ui-main-color-blue-0);
     position: sticky;
     top: 0;
     border-bottom: 1px solid black;
@@ -93,13 +93,12 @@ onMounted(async () => {
 
 .table-cell {
     padding: 6px 12px;
-    background: white;
 }
 
 .cancel-btn {
     border: 1px solid var(--ui-main-color-primary);
     border-radius: 6px;
-    background: white;
+    background: var(--ui-main-color-blue-0);
     cursor: pointer;
     padding: 0 6px;
 

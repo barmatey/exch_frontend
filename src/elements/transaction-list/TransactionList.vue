@@ -49,8 +49,7 @@ onMounted(async () => {
 
 <style scoped>
 .table {
-    background: var(--ui-main-color-white);
-    border: 2px solid var(--ui-main-color-white);
+    background: var(--ui-main-color-blue-0);
     border-radius: 6px;
     width: max-content;
     height: 100%;
@@ -69,7 +68,7 @@ onMounted(async () => {
     height: max-content;
     position: sticky;
     top: 0;
-    background: var(--ui-main-color-white);
+    background: var(--ui-main-color-blue-0);
 
 }
 

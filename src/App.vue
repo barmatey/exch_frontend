@@ -16,7 +16,7 @@ import {HorizontalMenu} from "./elements/menu";
 }
 
 .alliance {
-    background: var(--ui-main-color-blue-0);
+    background: var(--ui-main-color-white);
     height: 100vh;
     min-height: max-content;
 

@@ -35,7 +35,7 @@ gateway.createWebsocket()
     width: max-content;
     height: 400px;
     border-radius: 6px;
-    background: var(--ui-main-color-white);
+    background: var(--ui-main-color-blue-0);
     display: flex;
 }
 </style>

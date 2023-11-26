@@ -1,6 +1,6 @@
 <template>
     <div class="terminal terminal-grid-wrapper">
-        <div></div>
+        <side-menu/>
         <div>
             <level-two :ticker="ticker"/>
             <create-order :ticker="ticker" style="margin-top: 6px"/>
@@ -12,13 +12,12 @@
 </template>
 
 <script setup lang="ts">
+import {SideMenu} from "../../elements/side-menu";
 import {TransactionList} from "../../elements/transaction-list/";
-import {CreateOrder} from "../../elements/order-list/";
+import {CreateOrder, OrderList} from "../../elements/order-list/";
 import {LevelTwo} from "../../elements/level2/";
-import OrderList from "../../elements/order-list/OrderList.vue";
 
 const ticker = 'SGA'
-
 
 </script>
 
