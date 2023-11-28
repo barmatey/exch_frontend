@@ -7,7 +7,10 @@
             <transaction-list :ticker="ticker" style="height: calc(100vh - 614px); margin-top: 24px;"/>
 
         </div>
-        <order-list style="height: max-content; max-height: calc(100vh - 80px)"/>
+        <div>
+            <order-list style="height: calc(50vh - 80px)"/>
+            <deal-list style="height: calc(50vh - 80px); margin-top: 24px"/>
+        </div>
     </div>
 </template>
 
@@ -17,10 +20,11 @@ import {CreateOrder, OrderList} from "../../elements/order-list/";
 import {CommodityWindow, Commodity} from "../../elements/commodity-window/";
 import {LevelTwo} from "../../elements/level2/";
 import {ref} from "vue";
+import DealList from "../../elements/deal-list/DealList.vue";
 
 const ticker = ref('SGA')
 
-function handleCommodityChanged(commodity: Commodity){
+function handleCommodityChanged(commodity: Commodity) {
     console.log(commodity)
     ticker.value = commodity.ticker
 }
@@ -38,7 +42,7 @@ function handleCommodityChanged(commodity: Commodity){
     grid-gap: 48px;
 }
 
-.commodity-window{
+.commodity-window {
     display: flex;
     justify-content: end;
 }

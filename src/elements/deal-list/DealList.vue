@@ -3,25 +3,23 @@
         <div style="position: relative">
 
             <div class="table-header table-grid-wrapper">
-                <div class="table-title">Orders</div>
+                <div class="table-title">Deals</div>
                 <div class="table-column">Ticker</div>
                 <div class="table-column">Direction</div>
-                <div class="table-column">Price</div>
+                <div class="table-column">Avg. price</div>
                 <div class="table-column">Quantity</div>
-                <div class="table-column">Type</div>
                 <div class="table-column">Status</div>
                 <div class="table-column"></div>
             </div>
             <div class="table-grid-wrapper">
-                <div v-for="order in orders" style="display: contents">
-                    <div class="table-cell">{{ order.ticker }}</div>
-                    <div class="table-cell">{{ order.direction }}</div>
-                    <div class="table-cell">{{ order.price }}</div>
-                    <div class="table-cell">{{ order.quantity }}</div>
-                    <div class="table-cell">{{ order.dtype }}</div>
-                    <div class="table-cell">{{ order.status }}</div>
+                <div v-for="deal in deals" style="display: contents">
+                    <div class="table-cell">{{ deal.ticker }}</div>
+                    <div class="table-cell">{{ deal.type }}</div>
+                    <div class="table-cell">{{ deal.avgPrice }}</div>
+                    <div class="table-cell">{{ deal.quantity }}</div>
+                    <div class="table-cell">{{ deal.status }}</div>
                     <div class="table-cell" style="text-align: center">
-                        <button class="cancel-btn" @click="cancelOrder(order)">Cancel</button>
+                        <button class="info-btn">More</button>
                     </div>
                 </div>
             </div>
@@ -32,25 +30,22 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, Ref, ref} from "vue";
-import {Order} from "./domain";
-import {OrderGateway} from "./gateway";
-import {TEMP_ACC_ID} from "../../core";
+import {ref, Ref} from "vue";
+import {Deal, DealStatus} from "./domain";
+import {Id, Ticker} from "../../core";
 
-const orders: Ref<Order[]> = ref([])
-const gateway = new OrderGateway()
-
-async function cancelOrder(order: Order) {
-    await gateway.cancelOrder(order)
-    orders.value = orders.value.filter(item => item.id !== order.id)
-}
-
-onMounted(async () => {
-    orders.value = await gateway.getAccountOrders(TEMP_ACC_ID)
-    gateway.createWebsocket(orders, TEMP_ACC_ID)
-})
-
+const deals: Ref<Deal[]> = ref([
+    {
+        account: Id(null),
+        type: "BUY",
+        ticker: "Ticker",
+        status: "PROCESSING",
+        quantity: 400,
+        avgPrice: 20,
+    }
+])
 </script>
+
 
 <style scoped>
 .table {
@@ -71,7 +66,7 @@ onMounted(async () => {
 
 .table-title {
     grid-column-start: 1;
-    grid-column-end: 8;
+    grid-column-end: 7;
     padding-left: 12px;
     padding-right: 12px;
     padding-top: 6px;
@@ -87,7 +82,7 @@ onMounted(async () => {
 
 .table-grid-wrapper {
     display: grid;
-    grid-template-columns: repeat(6, 84px) 90px;
+    grid-template-columns: repeat(4, 96px) 120px 90px;
     grid-row-gap: 2px;
 }
 
@@ -95,7 +90,7 @@ onMounted(async () => {
     padding: 6px 12px;
 }
 
-.cancel-btn {
+.info-btn {
     border: 1px solid var(--ui-main-color-primary);
     border-radius: 6px;
     background: var(--ui-main-color-blue-0);
@@ -104,7 +99,8 @@ onMounted(async () => {
 
 }
 
-.cancel-btn:hover {
+.info-btn:hover {
     background: var(--ui-main-color-outline-pressed);
 }
+
 </style>
