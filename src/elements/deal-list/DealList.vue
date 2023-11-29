@@ -30,20 +30,17 @@
 </template>
 
 <script setup lang="ts">
-import {ref, Ref} from "vue";
+import {onMounted, ref, Ref} from "vue";
 import {Deal, DealStatus} from "./domain";
-import {Id, Ticker} from "../../core";
+import {Id, TEMP_ACC_ID, Ticker} from "../../core";
+import {DealGateway} from "./gateway";
 
-const deals: Ref<Deal[]> = ref([
-    {
-        account: Id(null),
-        type: "BUY",
-        ticker: "Ticker",
-        status: "PROCESSING",
-        quantity: 400,
-        avgPrice: 20,
-    }
-])
+const deals: Ref<Deal[]> = ref([])
+
+onMounted(async ()  => {
+    const gateway = new DealGateway()
+    deals.value = await gateway.getAccountDeals(TEMP_ACC_ID)
+})
 </script>
 
 
