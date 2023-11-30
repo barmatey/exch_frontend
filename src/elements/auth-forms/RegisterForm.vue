@@ -1,23 +1,33 @@
 <template>
     <div>
-        <div class="register-card">
-            <div class="register-title">
+        <div class="ui-card">
+            <div class="ui-card-title">
                 Sign in
             </div>
-            <div class="register-body">
-                <div>
-                    <label style="display: block">Email:</label>
-                    <input/>
+            <div class="ui-card-body">
+                <div class="flex-container">
+                    <div style="width: 100%">
+                        <label class="input-label">Email:</label>
+                        <input class="ui-input ui-input-bulk"/>
+                    </div>
+                    <div style="width: 100%">
+                        <label class="input-label">Password:</label>
+                        <input class="ui-input ui-input-bulk"/>
+                    </div>
+                    <div style="width: 100%">
+                        <label class="input-label">Repeat:</label>
+                        <input class="ui-input ui-input-bulk"/>
+                    </div>
+                    <button class="ui-btn ui-btn-bulk" style="margin-top: 6px">Sign up</button>
+                    <div class="footer-flex-container">
+                        <div>
+                            Have an account?
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label style="display: block">Password:</label>
-                    <input/>
-                </div>
-                <div>
-                    <label style="display: block">Repeat:</label>
-                    <input/>
-                </div>
+
             </div>
+
 
         </div>
     </div>
@@ -28,25 +38,27 @@
 </script>
 
 <style scoped>
-@import "src/ui-components/css/main/buttons.css";
-@import "src/ui-components/css/main/inputs.css";
+@import "/src/ui-components/css/main/buttons.css";
+@import "/src/ui-components/css/main/inputs.css";
+@import "src/ui-components/css/main/cards.css";
 
-
-.register-card {
-    width: 400px;
-    height: 300px;
-    border-radius: 12px;
-    border: 1px solid black;
+.input-label {
+    display: block;
+    margin-bottom: 6px;
 }
 
-.register-title {
 
-}
-
-.register-body {
+.flex-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
+}
+
+.footer-flex-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 </style>

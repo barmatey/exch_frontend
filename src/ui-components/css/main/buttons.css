@@ -1,3 +1,16 @@
-.btn{
+.ui-btn{
+    border: none;
+    border-radius: 24px;
+    background: var(--ui-main-color-primary);
+    height: 36px;
+    color: var(--ui-main-color-white);
+    cursor: pointer;
+}
 
+.ui-btn:hover{
+    background: var(--ui-main-color-primary-hover);
+}
+
+.ui-btn-bulk{
+    width: 100%;
 }
