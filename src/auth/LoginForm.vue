@@ -14,14 +14,13 @@
                         <label class="input-label">Password:</label>
                         <input class="ui-input ui-input-bulk"/>
                     </div>
-                    <div style="width: 100%">
-                        <label class="input-label">Repeat:</label>
-                        <input class="ui-input ui-input-bulk"/>
-                    </div>
-                    <button class="ui-btn ui-btn-bulk" style="margin-top: 6px">Sign up</button>
+                    <button class="ui-btn ui-btn-bulk" style="margin-top: 6px">Sign in</button>
                     <div class="footer-flex-container">
                         <div>
-                            Have an account?
+                            Forget password?
+                        </div>
+                        <div>
+                            Sign in
                         </div>
                     </div>
                 </div>
@@ -40,7 +39,7 @@
 <style scoped>
 @import "/src/ui-components/css/main/buttons.css";
 @import "/src/ui-components/css/main/inputs.css";
-@import "src/ui-components/css/main/cards.css";
+@import "../ui-components/css/main/cards.css";
 
 .input-label {
     display: block;

@@ -8,19 +8,26 @@
                 <div class="flex-container">
                     <div style="width: 100%">
                         <label class="input-label">Email:</label>
-                        <input class="ui-input ui-input-bulk"/>
+                        <input class="ui-input ui-input-bulk" v-model="data.email"/>
                     </div>
                     <div style="width: 100%">
                         <label class="input-label">Password:</label>
-                        <input class="ui-input ui-input-bulk"/>
+                        <input class="ui-input ui-input-bulk" v-model="data.password"/>
                     </div>
-                    <button class="ui-btn ui-btn-bulk" style="margin-top: 6px">Sign in</button>
+                    <div style="width: 100%">
+                        <label class="input-label">Repeat:</label>
+                        <input class="ui-input ui-input-bulk" v-model="data.repeat"/>
+                    </div>
+                    <button
+                        class="ui-btn ui-btn-bulk"
+                        style="margin-top: 6px"
+                        @click="submitData"
+                    >
+                        Sign up
+                    </button>
                     <div class="footer-flex-container">
                         <div>
-                            Forget password?
-                        </div>
-                        <div>
-                            Sign in
+                            Have an account?
                         </div>
                     </div>
                 </div>
@@ -33,13 +40,27 @@
 </template>
 
 <script setup lang="ts">
+import {ref, Ref} from "vue";
+import {UserGateway} from "./gateway";
+import {User} from "./domain";
 
+const data = ref({
+    email: "",
+    password: "",
+    repeat: "",
+})
+
+async function submitData() {
+    const gateway = new UserGateway()
+    const user: User = await gateway.register(data.value)
+
+}
 </script>
 
 <style scoped>
 @import "/src/ui-components/css/main/buttons.css";
 @import "/src/ui-components/css/main/inputs.css";
-@import "src/ui-components/css/main/cards.css";
+@import "../ui-components/css/main/cards.css";
 
 .input-label {
     display: block;

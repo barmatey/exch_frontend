@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import {RegisterForm} from "../../elements/auth-forms";
+import {RegisterForm} from "../../auth";
 </script>
 
 <style scoped>
