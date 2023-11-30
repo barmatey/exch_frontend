@@ -8,13 +8,19 @@
                 <div class="flex-container">
                     <div style="width: 100%">
                         <label class="input-label">Email:</label>
-                        <input class="ui-input ui-input-bulk"/>
+                        <input class="ui-input ui-input-bulk" v-model="data.email"/>
                     </div>
                     <div style="width: 100%">
                         <label class="input-label">Password:</label>
-                        <input class="ui-input ui-input-bulk"/>
+                        <input class="ui-input ui-input-bulk" v-model="data.password"/>
                     </div>
-                    <button class="ui-btn ui-btn-bulk" style="margin-top: 6px">Sign in</button>
+                    <button
+                        class="ui-btn ui-btn-bulk"
+                        style="margin-top: 6px"
+                        @click="login"
+                    >
+                        Sign in
+                    </button>
                     <div class="footer-flex-container">
                         <div>
                             Forget password?
@@ -33,13 +39,24 @@
 </template>
 
 <script setup lang="ts">
+import {ref} from "vue";
+import {UserGateway} from "./gateway";
 
+const data = ref({
+    email: "barmatey@gmail.com",
+    password: "145190hfp",
+})
+
+async function login() {
+    const gateway = new UserGateway()
+    await gateway.login(data.value)
+}
 </script>
 
 <style scoped>
 @import "/src/ui-components/css/main/buttons.css";
 @import "/src/ui-components/css/main/inputs.css";
-@import "../ui-components/css/main/cards.css";
+@import "/src/ui-components/css/main/cards.css";
 
 .input-label {
     display: block;

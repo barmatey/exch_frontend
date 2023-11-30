@@ -40,9 +40,8 @@
 </template>
 
 <script setup lang="ts">
-import {ref, Ref} from "vue";
+import {ref} from "vue";
 import {UserGateway} from "./gateway";
-import {User} from "./domain";
 
 const data = ref({
     email: "",
@@ -52,15 +51,14 @@ const data = ref({
 
 async function submitData() {
     const gateway = new UserGateway()
-    const user: User = await gateway.register(data.value)
-
+    await gateway.register(data.value)
 }
 </script>
 
 <style scoped>
 @import "/src/ui-components/css/main/buttons.css";
 @import "/src/ui-components/css/main/inputs.css";
-@import "../ui-components/css/main/cards.css";
+@import "/src/ui-components/css/main/cards.css";
 
 .input-label {
     display: block;

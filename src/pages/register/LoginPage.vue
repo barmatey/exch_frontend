@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import {LoginForm} from "../../auth/";
+import {LoginForm} from "../../elements/auth/";
 </script>
 
 <style scoped>

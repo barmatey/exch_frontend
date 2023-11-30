@@ -1,4 +1,4 @@
-import {Id} from "../core";
+import {Id} from "../../core";
 
 export interface UserCreate{
     email: string,
@@ -15,4 +15,8 @@ export function getBlankUser(): User {
         id: Id(null),
         email: "",
     }
+}
+
+export interface Token {
+    accessToken: string,
 }

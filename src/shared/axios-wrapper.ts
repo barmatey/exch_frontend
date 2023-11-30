@@ -2,23 +2,14 @@ import axios from "axios"
 import {BASE_URL} from "../core";
 
 
-export const axiosWrapper = {
-    get: axiosGet,
-    patch: axiosPatch,
-    patchWithFile: axiosPatchWithFile,
-    post: axiosPost,
-    postWithFile: axiosPostWithFile,
-    put: axiosPut,
-    delete: axiosDelete,
-}
-
-
 const axiosInstance = axios.create({
     baseURL: BASE_URL
 })
 
-async function axiosPost(url: string, data: object) {
-    const options = {headers: getHeaders()}
+async function axiosPost(url: string, data: object, config?: object) {
+    if (!config) config = {}
+    const options = Object.assign({}, config, {headers: getHeaders()})
+    console.log(data)
     return await axiosInstance.post(url, data, options)
 }
 
@@ -62,8 +53,8 @@ async function axiosPut(url: string, data: object) {
 }
 
 async function axiosDelete(url: string, data?: object) {
-    const options: {headers: object, data?: object} = {headers: getHeaders()}
-    if (typeof data !=='undefined') {
+    const options: { headers: object, data?: object } = {headers: getHeaders()}
+    if (typeof data !== 'undefined') {
         options.data = data
     }
     return await axiosInstance.delete(url, options)
@@ -83,4 +74,15 @@ function getAuthToken() {
     //     return {}
     // }
     return {}
+}
+
+
+export const axiosWrapper = {
+    get: axiosGet,
+    patch: axiosPatch,
+    patchWithFile: axiosPatchWithFile,
+    post: axiosPost,
+    postWithFile: axiosPostWithFile,
+    put: axiosPut,
+    delete: axiosDelete,
 }
