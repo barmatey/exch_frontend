@@ -1,5 +1,5 @@
 import {Id, Ticker} from "../../core";
-import {Deal, DealStatus} from "./domain";
+import {Deal} from "./domain";
 import {axiosWrapper} from "../../shared/axios-wrapper";
 
 
