@@ -8,8 +8,8 @@ export const router = createRouter({
     history: createWebHistory(),
     linkActiveClass: 'active',
     routes: [
-        terminalRoutes,
-        accountRoutes,
-        authRoutes,
+        ...terminalRoutes,
+        ...accountRoutes,
+        ...authRoutes,
     ]
 })
