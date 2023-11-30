@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router"
 import {terminalRoutes} from "./terminal-router";
 import {accountRoutes} from "./account-router";
+import {authRoutes} from "./auth-router";
 
 
 export const router = createRouter({
@@ -9,5 +10,6 @@ export const router = createRouter({
     routes: [
         terminalRoutes,
         accountRoutes,
+        authRoutes,
     ]
 })
