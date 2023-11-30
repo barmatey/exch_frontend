@@ -20,7 +20,7 @@ import {CreateOrder, OrderList} from "../../elements/order-list/";
 import {CommodityWindow, Commodity} from "../../elements/commodity-window/";
 import {LevelTwo} from "../../elements/level2/";
 import {ref} from "vue";
-import DealList from "../../elements/deal-list/DealList.vue";
+import {DealList} from "../../elements/deal-list/";
 
 const ticker = ref('SGA')
 
