@@ -13,9 +13,7 @@ function tokenDeserializer(data: TokenSchema): Token{
 export class UserGateway {
     async register(data: UserCreate): Promise<User> {
         const url = "/auth/register"
-        const result = (await axiosWrapper.post(url, data)).data
-        console.log(result)
-        return result
+        return (await axiosWrapper.post(url, data)).data
     }
 
     async login(data: UserCreate): Promise<Token> {

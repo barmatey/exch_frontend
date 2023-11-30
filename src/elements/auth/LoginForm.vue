@@ -41,6 +41,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {UserGateway} from "./gateway";
+import {Token} from "./domain";
 
 const data = ref({
     email: "barmatey@gmail.com",
@@ -49,7 +50,7 @@ const data = ref({
 
 async function login() {
     const gateway = new UserGateway()
-    await gateway.login(data.value)
+    const token: Token = await gateway.login(data.value)
 }
 </script>
 
