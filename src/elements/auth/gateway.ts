@@ -1,14 +1,28 @@
 import {axiosWrapper} from "../../shared/axios-wrapper";
-import {Token, User, UserCreate} from "./domain";
+import {User, UserCreate} from "./domain";
+import {Id} from "../../core";
 
 interface TokenSchema {
     access_token: string,
     token_type: string,
 }
 
-function tokenDeserializer(data: TokenSchema): Token{
-    return {accessToken: data.access_token}
+interface UserSchema {
+    id: string,
+    email: string,
+    is_active: boolean,
+    is_superuser: boolean,
+    is_verified: boolean,
 }
+
+function userDeserializer(data: UserSchema, token: string): User {
+    return {
+        email: data.email,
+        id: Id(data.id),
+        token,
+    }
+}
+
 
 export class UserGateway {
     async register(data: UserCreate): Promise<User> {
@@ -16,16 +30,21 @@ export class UserGateway {
         return (await axiosWrapper.post(url, data)).data
     }
 
-    async login(data: UserCreate): Promise<Token> {
-        const url = "/auth/jwt/login"
+    async login(data: UserCreate): Promise<User> {
+        // Get token
+        let url = "/auth/jwt/login"
         const headers = {
             'Accept': 'application/json, text/plain, */*',
         }
         const credentials = new FormData()
         credentials.append("username", data.email)
         credentials.append("password", data.password)
+        const token: TokenSchema = (await axiosWrapper.post(url, credentials, {headers})).data
 
-        const result: TokenSchema = (await axiosWrapper.post(url, credentials, {headers})).data
-        return tokenDeserializer(result)
+        //Get user
+        headers["Authorization"] = `Bearer ${token.access_token}`
+        url = "/users/me"
+        const userSchema: UserSchema = (await axiosWrapper.get(url, {}, headers)).data
+        return userDeserializer(userSchema, token.access_token)
     }
 }

@@ -8,15 +8,13 @@ export interface UserCreate{
 export interface User {
     id: Id,
     email: string,
+    token: string,
 }
 
 export function getBlankUser(): User {
     return {
         id: Id(null),
         email: "",
+        token: "",
     }
-}
-
-export interface Token {
-    accessToken: string,
 }

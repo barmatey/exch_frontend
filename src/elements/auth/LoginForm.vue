@@ -28,9 +28,12 @@
                         <div>
                             Sign in
                         </div>
+
                     </div>
                 </div>
-
+            <div style="background: lightyellow">
+                {{authStore.user}}
+            </div>
             </div>
 
 
@@ -41,16 +44,23 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {UserGateway} from "./gateway";
-import {Token} from "./domain";
+import {User} from "./domain";
+import {useAuthStore} from "../../shared/auth-store";
+import {useRouter} from "vue-router";
 
 const data = ref({
     email: "barmatey@gmail.com",
     password: "145190hfp",
 })
 
+const authStore = useAuthStore()
+const router = useRouter()
+
 async function login() {
     const gateway = new UserGateway()
-    const token: Token = await gateway.login(data.value)
+    const user: User = await gateway.login(data.value)
+    authStore.saveUser(user)
+    await router.push({name: "TerminalPage"})
 }
 </script>
 

@@ -9,20 +9,15 @@ const axiosInstance = axios.create({
 async function axiosPost(url: string, data: object, config?: object) {
     if (!config) config = {}
     const options = Object.assign({}, config, {headers: getHeaders()})
-    console.log(data)
     return await axiosInstance.post(url, data, options)
 }
 
-async function axiosGet(url: string, params?: object) {
-    let options
-    if (params) {
-        options = {
-            headers: getHeaders(),
-            params: params,
-        }
-    } else {
-        options = {headers: getHeaders()}
-    }
+async function axiosGet(url: string, params?: object, headers?: object) {
+    if (!headers) headers = getHeaders()
+    if (!params) params = {}
+    const options = Object.assign({}, {params}, {headers})
+
+    console.log("Options: ", options)
     return await axiosInstance.get(url, options)
 }
 
