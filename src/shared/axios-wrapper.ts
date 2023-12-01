@@ -1,5 +1,6 @@
 import axios from "axios"
 import {BASE_URL} from "../core";
+import {useAuthStore} from "./auth-store";
 
 
 const axiosInstance = axios.create({
@@ -61,13 +62,8 @@ function getHeaders(additionalHeaders = {}) {
 }
 
 function getAuthToken() {
-    // const {user} = useAuthStore()
-    // const isLoggedIn = !!user?.data?.['auth_token']
-    // if (isLoggedIn) {
-    //     return {Authorization: `Token ${user.data['auth_token']}`}
-    // } else {
-    //     return {}
-    // }
+    const store = useAuthStore()
+    if (store.getUser) return {Authorization: `Bearer ${store.getUser.token}`}
     return {}
 }
 

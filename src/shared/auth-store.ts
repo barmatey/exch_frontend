@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 import {Id} from "../core";
-import {Ref, ref} from "vue";
+import {computed, Ref, ref} from "vue";
 
 export interface User{
     id: Id,
@@ -10,6 +10,7 @@ export interface User{
 
 export const useAuthStore = defineStore("AuthStore", () => {
     const user: Ref<User | undefined> = ref(JSON.parse(localStorage.getItem("exchange_user")))
+    const getUser = computed(() => user.value)
 
     function saveUser(data: User){
         user.value = data
@@ -17,7 +18,7 @@ export const useAuthStore = defineStore("AuthStore", () => {
     }
 
     return {
-        user,
+        getUser,
         saveUser,
     }
 })
