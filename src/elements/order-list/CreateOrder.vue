@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import {defineProps, ref} from "vue";
 import {Order, OrderDirection} from "./domain";
-import {TEMP_ACC_ID, Ticker} from "../../core";
+import {Ticker} from "../../core";
 import {OrderGateway} from "./gateway";
 
 const p = defineProps<{
@@ -32,7 +32,7 @@ const quantity = ref(1)
 
 async function createOrder(direction: OrderDirection) {
     const data: Order = {
-        account: TEMP_ACC_ID,
+        account: "TEMP_ACC_ID",
         direction: direction,
         dtype: 'LIMIT',
         id: "",

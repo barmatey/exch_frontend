@@ -35,7 +35,11 @@
 import {onMounted, Ref, ref} from "vue";
 import {Order} from "./domain";
 import {OrderGateway} from "./gateway";
-import {TEMP_ACC_ID} from "../../core";
+import {useAuthStore} from "../../shared/auth-store";
+import {Id} from "../../core";
+
+const authStore = useAuthStore()
+const accId = Id(authStore.getUser?.id)
 
 const orders: Ref<Order[]> = ref([])
 const gateway = new OrderGateway()
@@ -46,8 +50,8 @@ async function cancelOrder(order: Order) {
 }
 
 onMounted(async () => {
-    orders.value = await gateway.getAccountOrders(TEMP_ACC_ID)
-    gateway.createWebsocket(orders, TEMP_ACC_ID)
+    orders.value = await gateway.getAccountOrders(accId)
+    gateway.createWebsocket(orders, accId)
 })
 
 </script>

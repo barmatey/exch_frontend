@@ -60,7 +60,10 @@ function getHeaders() {
     const token = store.getUser
         ? {Authorization: `Bearer ${store.getUser.token}`}
         : {}
-    return Object.assign({}, token, {"Content-Type": 'application/json'})
+    const headers = {
+        "Content-Type": "application/json",
+    }
+    return Object.assign({}, token, headers)
 }
 
 
