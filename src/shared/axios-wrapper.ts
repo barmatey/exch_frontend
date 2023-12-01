@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 async function axiosPost(url: string, data: object, config?: object) {
     if (!config) config = {}
     console.log(data)
-    const options = Object.assign({}, config, {headers: getHeaders()})
+    const options = Object.assign({}, {headers: getHeaders()}, config, )
     return await axiosInstance.post(url, data, options)
 }
 

@@ -29,9 +29,8 @@ export class UserGateway {
         const url = "/auth/register"
         const userSchema: UserSchema = (await axiosWrapper.post(url, data)).data
 
-        const accUrl = "/account/from-user-uuid"
-        const accData = {user_uuid: userSchema.id}
-        await axiosWrapper.post(accUrl, accData)
+        const accUrl = `/account/from-user-uuid?user_uuid=${userSchema.id}`
+        await axiosWrapper.post(accUrl, {})
     }
 
     async login(data: UserCreate): Promise<User> {
