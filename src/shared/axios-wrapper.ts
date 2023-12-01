@@ -9,6 +9,7 @@ const axiosInstance = axios.create({
 
 async function axiosPost(url: string, data: object, config?: object) {
     if (!config) config = {}
+    console.log(data)
     const options = Object.assign({}, config, {headers: getHeaders()})
     return await axiosInstance.post(url, data, options)
 }
@@ -17,8 +18,6 @@ async function axiosGet(url: string, params?: object, headers?: object) {
     if (!headers) headers = getHeaders()
     if (!params) params = {}
     const options = Object.assign({}, {params}, {headers})
-
-    console.log("Options: ", options)
     return await axiosInstance.get(url, options)
 }
 
@@ -56,16 +55,14 @@ async function axiosDelete(url: string, data?: object) {
     return await axiosInstance.delete(url, options)
 }
 
-function getHeaders(additionalHeaders = {}) {
-    const token = getAuthToken()
-    return Object.assign({}, token, additionalHeaders)
+function getHeaders() {
+    const store = useAuthStore()
+    const token = store.getUser
+        ? {Authorization: `Bearer ${store.getUser.token}`}
+        : {}
+    return Object.assign({}, token, {"Content-Type": 'application/json'})
 }
 
-function getAuthToken() {
-    const store = useAuthStore()
-    if (store.getUser) return {Authorization: `Bearer ${store.getUser.token}`}
-    return {}
-}
 
 
 export const axiosWrapper = {

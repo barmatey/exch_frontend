@@ -44,9 +44,9 @@ import {ref} from "vue";
 import {UserGateway} from "./gateway";
 
 const data = ref({
-    email: "",
-    password: "",
-    repeat: "",
+    email: `${Date.now()}` + "@gmail.com",
+    password: "145190hfp",
+    repeat: "145190hfp",
 })
 
 async function submitData() {

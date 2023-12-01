@@ -1,6 +1,7 @@
 import {BASE_HOST, Ticker} from "../../core";
 import {OrderBook} from "./domain";
 import {Ref} from "vue";
+import {useAuthStore} from "../../shared/auth-store";
 
 interface OrderBookSchema {
     ticker: Ticker
@@ -25,6 +26,7 @@ export class OrderBookGateway {
     }
 
     createWebsocket(target: Ref<OrderBook>){
+        const authStore = useAuthStore()
         const url = `ws://${BASE_HOST}/market/ws/${target.value.ticker}`
         this.ws = new WebSocket(url)
         this.ws.onopen = () => console.log('Level2 WebSocket open')

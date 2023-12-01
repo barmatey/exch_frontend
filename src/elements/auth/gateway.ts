@@ -25,9 +25,13 @@ function userDeserializer(data: UserSchema, token: string): User {
 
 
 export class UserGateway {
-    async register(data: UserCreate): Promise<User> {
+    async register(data: UserCreate) {
         const url = "/auth/register"
-        return (await axiosWrapper.post(url, data)).data
+        const userSchema: UserSchema = (await axiosWrapper.post(url, data)).data
+
+        const accUrl = "/account/from-user-uuid"
+        const accData = {user_uuid: userSchema.id}
+        await axiosWrapper.post(accUrl, accData)
     }
 
     async login(data: UserCreate): Promise<User> {
