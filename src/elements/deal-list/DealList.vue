@@ -31,15 +31,19 @@
 
 <script setup lang="ts">
 import {onMounted, ref, Ref} from "vue";
-import {Deal, DealStatus} from "./domain";
-import {Id, TEMP_ACC_ID, Ticker} from "../../core";
+import {Deal} from "./domain";
+import {Id} from "../../core";
 import {DealGateway} from "./gateway";
+import {useAuthStore} from "../../shared/auth-store";
+
+const authStore = useAuthStore()
+const accId = Id(authStore.getUser?.id)
 
 const deals: Ref<Deal[]> = ref([])
 
 onMounted(async ()  => {
     const gateway = new DealGateway()
-    deals.value = await gateway.getAccountDeals(TEMP_ACC_ID)
+    deals.value = await gateway.getAccountDeals(accId)
 })
 </script>
 
