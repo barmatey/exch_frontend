@@ -17,8 +17,9 @@ export const useAuthStore = defineStore("AuthStore", () => {
     const getUser = computed(() => user.value)
 
     function saveUser(data: User) {
+        console.log("saveUser", data)
         user.value = data
-        localStorage.setItem("exchange_user", JSON.stringify(user))
+        localStorage.setItem("exchange_user", JSON.stringify(data))
     }
 
     return {

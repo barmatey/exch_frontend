@@ -20,19 +20,23 @@
 <script setup lang="ts">
 import {defineProps, ref} from "vue";
 import {Order, OrderDirection} from "./domain";
-import {Ticker} from "../../core";
+import {Id, Ticker} from "../../core";
 import {OrderGateway} from "./gateway";
+import {useAuthStore} from "../../shared/auth-store";
 
 const p = defineProps<{
     ticker: Ticker,
 }>()
+
+const authStore = useAuthStore()
+const accId = Id(authStore.getUser?.id)
 
 const price = ref(5)
 const quantity = ref(1)
 
 async function createOrder(direction: OrderDirection) {
     const data: Order = {
-        account: "TEMP_ACC_ID",
+        account: accId,
         direction: direction,
         dtype: 'LIMIT',
         id: "",
